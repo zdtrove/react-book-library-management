@@ -23,6 +23,15 @@ const productsReducer = (state = initialState, { type, payload }) => {
 				list: [],
 				error: payload
 			}
+		case types.CHANGE_PRODUCTS:
+			const tempList = [...state.list]
+			const index = tempList.indexOf(state.list.find(item => item.id === payload))
+			const product = tempList[index]
+			product.inCart = true
+			return {
+				...state,
+				list: tempList
+			}
 		default:
 			return state
 	}

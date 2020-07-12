@@ -13,3 +13,8 @@ export const loadProductsFailed = error => ({
 	type: types.LOAD_PRODUCTS_FAILED,
 	payload: error
 })
+
+export const changeProducts = productId => ({
+	type: types.CHANGE_PRODUCTS,
+	payload: productId
+})

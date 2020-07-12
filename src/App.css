@@ -160,8 +160,18 @@ body {
     cursor: pointer;
 }
 
+.bag-btn:disabled {
+    color: #ddd;
+    background: #ccc;
+    cursor: default;
+}
+
 .bag-btn:hover {
     color: var(--mainWhite);
+}
+
+.bag-btn:disabled {
+    color: #ddd;
 }
 
 .fa-shopping-cart {

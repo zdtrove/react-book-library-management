@@ -3,122 +3,182 @@
 		{
 			"id": 1,
 			"image": "images/product-1.jpeg",
-			"title": "product1",
-			"price": 200
+			"title": "Learn React Hook",
+			"price": 100,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 2,
 			"image": "images/product-2.jpeg",
-			"title": "product2",
-			"price": 200
+			"title": "Master React",
+			"price": 200,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 3,
 			"image": "images/product-3.jpeg",
-			"title": "product3",
-			"price": 200
+			"title": "React Higher Order Component",
+			"price": 300,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 4,
 			"image": "images/product-4.jpeg",
-			"title": "product4",
-			"price": 200
+			"title": "Redux Saga",
+			"price": 100,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 5,
 			"image": "images/product-5.jpeg",
 			"title": "product5",
-			"price": 200
+			"price": 250,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 				{
 			"id": 6,
 			"image": "images/product-6.jpeg",
 			"title": "product6",
-			"price": 200
+			"price": 500,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 7,
 			"image": "images/product-7.jpeg",
 			"title": "product7",
-			"price": 200
+			"price": 200,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 8,
 			"image": "images/product-8.jpeg",
 			"title": "product8",
-			"price": 200
+			"price": 900,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 9,
 			"image": "images/product-1.jpeg",
 			"title": "product9",
-			"price": 200
+			"price": 150,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 10,
 			"image": "images/product-2.jpeg",
 			"title": "product10",
-			"price": 200
+			"price": 300,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 				{
 			"id": 11,
 			"image": "images/product-3.jpeg",
 			"title": "product11",
-			"price": 200
+			"price": 800,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 12,
 			"image": "images/product-4.jpeg",
 			"title": "product12",
-			"price": 200
+			"price": 200,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 13,
 			"image": "images/product-5.jpeg",
 			"title": "product13",
-			"price": 200
+			"price": 100,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 14,
 			"image": "images/product-6.jpeg",
 			"title": "product14",
-			"price": 200
+			"price": 200,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 15,
 			"image": "images/product-7.jpeg",
 			"title": "product15",
-			"price": 200
+			"price": 600,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 				{
 			"id": 16,
 			"image": "images/product-8.jpeg",
 			"title": "product16",
-			"price": 200
+			"price": 550,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 17,
 			"image": "images/product-1.jpeg",
 			"title": "product17",
-			"price": 200
+			"price": 200,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 18,
 			"image": "images/product-2.jpeg",
 			"title": "product18",
-			"price": 200
+			"price": 600,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 19,
 			"image": "images/product-3.jpeg",
 			"title": "product19",
-			"price": 200
+			"price": 100,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		},
 		{
 			"id": 20,
 			"image": "images/product-4.jpeg",
 			"title": "product20",
-			"price": 200
+			"price": 200,
+			"inCart": false,
+			"count": 0,
+			"totalPrice": 0
 		}
 	]
 }

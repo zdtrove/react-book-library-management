@@ -7,3 +7,11 @@ export const showLoadingProducts = () => ({
 export const hideLoadingProducts = () => ({
 	type: types.HIDE_LOADING_PRODUCTS
 })
+
+export const showCart = () => ({
+	type: types.SHOW_CART
+})
+
+export const hideCart = () => ({
+	type: types.HIDE_CART
+})
