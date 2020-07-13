@@ -7,7 +7,8 @@
 			"price": 100,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 5
 		},
 		{
 			"id": 2,
@@ -16,7 +17,8 @@
 			"price": 200,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 8
 		},
 		{
 			"id": 3,
@@ -25,7 +27,8 @@
 			"price": 300,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 2
 		},
 		{
 			"id": 4,
@@ -34,7 +37,8 @@
 			"price": 100,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 5
 		},
 		{
 			"id": 5,
@@ -43,7 +47,8 @@
 			"price": 250,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 16
 		},
 				{
 			"id": 6,
@@ -52,7 +57,8 @@
 			"price": 500,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 3
 		},
 		{
 			"id": 7,
@@ -61,7 +67,8 @@
 			"price": 200,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 9
 		},
 		{
 			"id": 8,
@@ -70,7 +77,8 @@
 			"price": 900,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 54
 		},
 		{
 			"id": 9,
@@ -79,7 +87,8 @@
 			"price": 150,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 4
 		},
 		{
 			"id": 10,
@@ -88,7 +97,8 @@
 			"price": 300,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 17
 		},
 				{
 			"id": 11,
@@ -97,7 +107,8 @@
 			"price": 800,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 5
 		},
 		{
 			"id": 12,
@@ -106,7 +117,8 @@
 			"price": 200,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 2
 		},
 		{
 			"id": 13,
@@ -115,7 +127,8 @@
 			"price": 100,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 1
 		},
 		{
 			"id": 14,
@@ -124,7 +137,8 @@
 			"price": 200,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 8
 		},
 		{
 			"id": 15,
@@ -133,7 +147,8 @@
 			"price": 600,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 8
 		},
 				{
 			"id": 16,
@@ -142,7 +157,8 @@
 			"price": 550,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 13
 		},
 		{
 			"id": 17,
@@ -151,7 +167,8 @@
 			"price": 200,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 7
 		},
 		{
 			"id": 18,
@@ -160,7 +177,8 @@
 			"price": 600,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 76
 		},
 		{
 			"id": 19,
@@ -169,7 +187,8 @@
 			"price": 100,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 8
 		},
 		{
 			"id": 20,
@@ -178,7 +197,8 @@
 			"price": 200,
 			"inCart": false,
 			"count": 0,
-			"totalPrice": 0
+			"totalPrice": 0,
+			"inStore": 5
 		}
 	]
 }

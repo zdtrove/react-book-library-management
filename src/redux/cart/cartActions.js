@@ -5,18 +5,21 @@ export const addToCart = item => ({
 	payload: item
 })
 
-export const removeItem = () => ({
-	type: types.REMOVE_ITEM
+export const removeItem = productId => ({
+	type: types.REMOVE_ITEM,
+	payload: productId
 })
 
 export const clearCart = () => ({
 	type: types.CLEAR_CART
 })
 
-export const increaseCart = () => ({
-	type: types.INCREASE_CART
+export const increaseCart = productId => ({
+	type: types.INCREASE_CART,
+	payload: productId
 })
 
-export const decreaseCart = () => ({
-	type: types.DECREASE_CART
+export const decreaseCart = productId => ({
+	type: types.DECREASE_CART,
+	payload: productId
 })
