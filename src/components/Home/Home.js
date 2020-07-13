@@ -64,12 +64,6 @@ const Home = ({
 					</div>
 				</div>
 			</nav>
-			{/*<header className="hero">
-				<div className="banner">
-					<h1 className="banner-title">furniture collection</h1>
-					<button className="banner-btn">shop now</button>
-				</div>
-			</header>*/}
 			<section className="products">
 				<div className="section-title">
 					<h2>our books</h2>
