@@ -12,9 +12,9 @@ function ProductItem({ product, addToCart }) {
         <article key={id} className="product">
             <div className="img-container">
                 <img src={image} alt="product" className="product-img" />
-                <button disabled={inCart ? "disabled" : ""} onClick={() => onAddToCart(product)} className="bag-btn">
+                <button disabled={inCart && "disabled"} onClick={() => onAddToCart(product)} className="bag-btn">
                     <FaShoppingCart className="fa-shopping-cart" />
-                    {inCart === true ? "in cart" : "add to cart"}
+                    {inCart ? <span>in cart</span> : <span>add to cart</span>}
                 </button>
             </div>
             <h3>{title}</h3>
@@ -24,8 +24,10 @@ function ProductItem({ product, addToCart }) {
 }
 
 ProductItem.propTypes = {
-    product: PropTypes.object.isRequired,
-    addToCart: PropTypes.func.isRequired
+    addToCart: PropTypes.func.isRequired,
+    product: PropTypes.shape({
+        inCart: PropTypes.bool.isRequired
+    })
 }
 
 export default ProductItem

@@ -7,8 +7,7 @@ import * as productActions from '../../redux/products/productsActions'
 import { FaWindowClose } from 'react-icons/fa'
 import CartItem from '../../components/Cart/CartItem'
 
-const CartContainer = ({ isShowCart, listCart, totalPrice, uiActionCreators, productsActionCreator }) => {
-    const { hideCart } = uiActionCreators
+const CartContainer = ({ isShowCart, listCart, totalPrice, productsActionCreator, hideCart }) => {
     const { clearCart } = productsActionCreator
     const onClearCart = () => {
         clearCart()
@@ -37,10 +36,7 @@ const CartContainer = ({ isShowCart, listCart, totalPrice, uiActionCreators, pro
 }
 
 CartContainer.propTypes = {
-	uiActionsCreator: PropTypes.shape({
-		showCart: PropTypes.func.isRequired,
-		hideCart: PropTypes.func.isRequired
-	}),
+    hideCart: PropTypes.func.isRequired,
 	cartActionsCreator: PropTypes.shape({
 		addToCart: PropTypes.func.isRequired,
 		removeItem: PropTypes.func.isRequired,
@@ -61,7 +57,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     uiActionCreators: bindActionCreators(uiActions, dispatch),
-    productsActionCreator: bindActionCreators(productActions, dispatch)
+    productsActionCreator: bindActionCreators(productActions, dispatch),
+    hideCart: () => dispatch(uiActions.hideCart())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartContainer)

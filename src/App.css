@@ -18,6 +18,7 @@ body {
     color: var(--mainBlack);
     background: var(--mainWhite);
     font-family: "Lato", sans-serif;
+    max-width: 1400px;
 }
 
 /* --------------- Navbar ---------------- */
@@ -35,12 +36,12 @@ body {
 
 .navbar-center {
     width: 100%;
-    max-width: 1170px;
+    max-width: 1300px;
     margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 1.5rem;
+    padding: 0 2rem;
 }
 
 .nav-icon {
@@ -120,32 +121,38 @@ body {
     padding: 4rem 0;
 }
 
+.product {
+    border: 1px solid var(--primaryColor);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
 .section-title h2 {
     text-align: center;
     font-size: 2.5rem;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
     text-transform: capitalize;
     letter-spacing: var(--mainSpacing);
 }
 
 .products-center {
-    width: 90vw;
+    width: 100%;
+    max-width: 1300px;
     margin: 0 auto;
-    max-width: 1170px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     grid-column-gap: 1.5rem;
     grid-row-gap: 2rem;
+    padding: 0.5rem 2rem;
 }
 
 .img-container {
     position: relative;
-    overflow: hidden;
 }
 
 .bag-btn {
     position: absolute;
-    top: 70%;
+    top: 91.5%;
     right: 0;
     background: var(--primaryColor);
     border: none;
@@ -342,4 +349,47 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.Toastify__toast--success {
+    background: var(--primaryColor) !important;
+}
+
+.Toastify__toast--success, .Toastify__toast--warning {
+    border-radius: 5px !important;
+    border: 1px solid #fff;
+}
+
+.Toastify__toast-body {
+    color: var(--mainBlack) !important;
+}
+
+.action-bar {
+    padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+.action-bar input {
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    min-width: 320px;
+    outline: none;
+    margin-right: 30px;
+    color: var(--primaryColor);
+}
+
+.action-bar button {
+    padding: 5px 20px;
+    background: burlywood;
+    border: none;
+    border-radius: 4px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
 }

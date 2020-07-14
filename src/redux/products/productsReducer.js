@@ -75,13 +75,13 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			}
 		}
 		case types.CLEAR_CART: {
-			[...state.listCart].map(item => item.inCart = false)
+			const listProducts = [...state.listProducts].map(item => item.inCart === true ? {...item, inCart: false} : item)
 
 			return {
 				...state,
 				listCart: [],
 				totalPrice: 0,
-				listProducts: [...state.listProducts]
+				listProducts: listProducts
 			}
 		}
 		case types.INCREASE_CART: {
@@ -106,7 +106,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			const listCart = [...state.listCart]
 			const product = listCart[findIndex(listCart, payload)]
 			if (product.count === 1) {
-				product.inCart = false
+				product.inCart = !product.inCart
 				product.totalPrice = product.count * product.price
 				const listCartFinal = listCart.filter(item => item.id !== payload)
 				

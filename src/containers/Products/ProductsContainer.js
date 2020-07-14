@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import * as productActions from '../../redux/products/productsActions'
 import ProductItem from '../../components/Products/ProductItem'
 
-const ProductsContainer = ({ listProducts, isLoadingProducts, productActionsCreator }) => {
-    const { loadProducts, addToCart } = productActionsCreator
+const ProductsContainer = ({ listProducts, isLoadingProducts, loadProducts, addToCart }) => {
     useEffect(() => {
 		loadProducts()
     }, [loadProducts])
@@ -14,6 +12,10 @@ const ProductsContainer = ({ listProducts, isLoadingProducts, productActionsCrea
         <section className="products">
             <div className="section-title">
                 <h2>our books</h2>
+            </div>
+            <div className="action-bar">
+                <input type="text" placeholder="Search..." />
+                <button type="button">Add book</button>
             </div>
             <div className="products-center">
                 {isLoadingProducts && <div className="wrap-loader"><span className="loader"></span></div>}
@@ -28,12 +30,8 @@ const ProductsContainer = ({ listProducts, isLoadingProducts, productActionsCrea
 ProductsContainer.propTypes = {
     listProducts: PropTypes.array.isRequired,
     isLoadingProducts: PropTypes.bool.isRequired,
-    cartActionsCreator: PropTypes.shape({
-        addToCart: PropTypes.func.isRequired
-    }),
-    productsActionsCreator: PropTypes.shape({
-        loadProducts: PropTypes.func.isRequired
-    })
+    addToCart: PropTypes.func.isRequired,
+    loadProducts: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -42,7 +40,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    productActionsCreator: bindActionCreators(productActions, dispatch)
+    loadProducts: () => dispatch(productActions.loadProducts()),
+    addToCart: product => dispatch(productActions.addToCart(product))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer)
