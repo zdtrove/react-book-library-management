@@ -62,6 +62,13 @@ body {
     color: var(--mainWhite);
 }
 
+.logo {
+    font-size: 30px;
+}
+
+.logo span {
+    color: var(--primaryColor);
+}
 /* --------------- End of Navbar ---------------- */
 
 /* --------------- Hero ---------------- */
@@ -317,11 +324,11 @@ body {
     text-align: center;
 }
 .loader {
-    border: 1px solid #bfbfbf;
+    border: 5px solid #bfbfbf;
     border-radius: 50%;
-    border-top: 1px solid #00684d;
-    width: 100px;
-    height: 100px;
+    border-top: 5px solid var(--primaryColor);
+    width: 50px;
+    height: 50px;
     align-items: center;
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;

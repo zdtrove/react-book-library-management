@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import logo from '../../assets/images/logo.svg'
 import { FaBars, FaCartPlus } from 'react-icons/fa'
 
 const Navbar = ({ listCart, uiActionsCreator }) => {
@@ -10,7 +9,7 @@ const Navbar = ({ listCart, uiActionsCreator }) => {
 			<span className="nav-icon">
 				<FaBars />
 			</span>
-			<img src={logo} alt="store logo" />
+			<p className="logo">Book <span>Store</span></p>
 			<div onClick={showCart} className="cart-btn">
 				<span className="nav-icon">
 					<FaCartPlus />

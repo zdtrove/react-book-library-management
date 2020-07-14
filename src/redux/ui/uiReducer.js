@@ -1,8 +1,8 @@
 import * as types from './uiTypes'
 
 const initialState = {
-	loadingProducts: false,
-	showCart: false
+	isLoadingProducts: false,
+	isShowCart: false
 }
 
 const uiReducer = (state = initialState, { type, payload }) => {
@@ -10,23 +10,23 @@ const uiReducer = (state = initialState, { type, payload }) => {
 		case types.SHOW_LOADING_PRODUCTS:
 			return {
 				...state,
-				loadingProducts: true
+				isLoadingProducts: true
 			}
 		case types.HIDE_LOADING_PRODUCTS:
 			return {
 				...state,
-				loadingProducts: false
+				isLoadingProducts: false
 			}
 		case types.SHOW_CART:
 			return {
 				...state,
-				showCart: true
+				isShowCart: true
 			}
 
 		case types.HIDE_CART:
 			return {
 				...state,
-				showCart: false
+				isShowCart: false
 			}
 		default:
 			return state
