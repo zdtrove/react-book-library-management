@@ -125,6 +125,7 @@ body {
     border: 1px solid var(--primaryColor);
     border-radius: 4px;
     overflow: hidden;
+    padding-bottom: 15px;
 }
 
 .section-title h2 {
@@ -329,6 +330,7 @@ body {
 .wrap-loader {
     width: 100%;
     text-align: center;
+    padding: 50px 0;
 }
 .loader {
     border: 5px solid #bfbfbf;
@@ -364,6 +366,11 @@ body {
     color: var(--mainBlack) !important;
 }
 
+.Toastify__progress-bar {
+    height: 3px !important;
+    background-color: chartreuse !important;
+}
+
 .action-bar {
     padding: 0.5rem 2rem;
     display: flex;
@@ -383,6 +390,10 @@ body {
     color: var(--primaryColor);
 }
 
+.action-bar input::placeholder {
+    color: var(--primaryColor);
+}
+
 .action-bar button {
     padding: 5px 20px;
     background: burlywood;
@@ -392,4 +403,14 @@ body {
     font-weight: bold;
     cursor: pointer;
     outline: none;
+}
+
+.no-book {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+    color: var(--primaryColor);
+    padding: 50px 0;
+    text-transform: capitalize;
 }

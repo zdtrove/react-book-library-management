@@ -1,5 +1,5 @@
 import * as types from './productsTypes'
-import * as msg from '../../constants'
+import * as msg from '../../utils/messages'
 import { toast } from 'react-toastify'
 
 const initialState = {
@@ -17,19 +17,12 @@ const getTotalPrice = listCart => {
 	return totalPrice
 }
 
-const findItem = (list, id) => {
-	return list.find(item => item.id === id)
-}
-
-const findIndex = (list, id) => {
-	return list.indexOf(findItem(list, id))
-}
-
 const productsReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
 		case types.LOAD_PRODUCTS: {
 			return {
-				...state
+				...state,
+				listProducts: []
 			}
 		}
 		case types.LOAD_PRODUCTS_SUCCESS: {
@@ -47,55 +40,43 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			}
 		}
 		case types.ADD_TO_CART: {
-			const listCart = [...state.listCart, payload]
-			const product = listCart[findIndex(listCart, payload.id)]
-			product.inCart = !product.inCart
-			product.count = 1
-			product.totalPrice = product.count * product.price
-			toast.success(msg.MSG_ADD_TO_CART(product.title))
+			const itemAdd = {...payload, inCart: true, count: 1, totalPrice: ((payload.count+1) * payload.price)}
+			const listCart = [...state.listCart, itemAdd]
+			toast.success(msg.MSG_ADD_TO_CART(payload.title))
+			return {
+				...state,
+				listCart,
+				totalPrice: getTotalPrice(listCart),
+				listProducts: [...state.listProducts].map(item => item.id === payload.id ? itemAdd : item)
+			}
+		}
+		case types.REMOVE_ITEM: {
+			const listCart = [...state.listCart].filter(item => item.id !== payload)
 
 			return {
 				...state,
 				listCart,
 				totalPrice: getTotalPrice(listCart),
-				listProducts: [...state.listProducts]
-			}
-		}
-		case types.REMOVE_ITEM: {
-			const listCart = [...state.listCart]
-			const product = listCart[findIndex(listCart, payload)]
-			product.inCart = !product.inCart
-			product.count = 0
-
-			return {
-				...state,
-				listCart: listCart.filter(item => item.id !== payload),
-				totalPrice: getTotalPrice(listCart),
-				listProducts: [...state.listProducts]
+				listProducts: [...state.listProducts].map(item => item.id === payload ? {...item, inCart: false, count: 0, totalPrice: 0} : item)
 			}
 		}
 		case types.CLEAR_CART: {
-			const listProducts = [...state.listProducts].map(item => item.inCart === true ? {...item, inCart: false} : item)
-
 			return {
 				...state,
 				listCart: [],
 				totalPrice: 0,
-				listProducts: listProducts
+				listProducts: [...state.listProducts].map(item => ({...item, inCart: false}))
 			}
 		}
 		case types.INCREASE_CART: {
-			const listCart = [...state.listCart]
-			const product = listCart[findIndex(listCart, payload)]
-			if (product.count === product.inStore) {
-				toast.warn(msg.MSG_MAX_PRODUCT_IN_STORE(product.inStore))
+			const { id, count, price, inStore } = payload
+			if (count === inStore) {
+				toast.warn(msg.MSG_MAX_PRODUCT_IN_STORE(inStore))
 				return {
-					...state,
-					listCart
+					...state
 				}
 			}
-			product.count++
-			product.totalPrice = product.count * product.price
+			const listCart = [...state.listCart].map(item => item.id === id ? {...item, count: count+1, totalPrice: (count+1) * price} : item)
 			return {
 				...state,
 				listCart,
@@ -103,23 +84,15 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			}
 		}
 		case types.DECREASE_CART: {
-			const listCart = [...state.listCart]
-			const product = listCart[findIndex(listCart, payload)]
-			if (product.count === 1) {
-				product.inCart = !product.inCart
-				product.totalPrice = product.count * product.price
-				const listCartFinal = listCart.filter(item => item.id !== payload)
-				
+			const { id, count, price } = payload
+			if (count === 1) {
 				return {
 					...state,
-					listCart: listCartFinal,
-					totalPrice: getTotalPrice(listCartFinal),
-					listProducts: [...state.listProducts]
+					listCart: [...state.listCart].filter(item => item.id !== id),
+					listProducts: [...state.listProducts].map(item => item.id === id ? {...item, inCart: false, count: 0, totalPrice: 0} : item)
 				}
 			}
-			product.count--
-			product.totalPrice = product.count * product.price
-			
+			const listCart = [...state.listCart].map(item => item.id === id ? {...item, count: count-1, totalPrice: (count-1) * price} : item)
 			return {
 				...state,
 				listCart,

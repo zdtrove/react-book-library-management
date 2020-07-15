@@ -4,15 +4,13 @@ import { FaShoppingCart } from 'react-icons/fa'
 
 function ProductItem({ product, addToCart }) {
     const { id, image, inCart, title, price } = product
-    const onAddToCart = product => {
-        addToCart(product)
-    }
+
 
     return (
         <article key={id} className="product">
             <div className="img-container">
                 <img src={image} alt="product" className="product-img" />
-                <button disabled={inCart && "disabled"} onClick={() => onAddToCart(product)} className="bag-btn">
+                <button disabled={inCart && "disabled"} onClick={() => addToCart(product)} className="bag-btn">
                     <FaShoppingCart className="fa-shopping-cart" />
                     {inCart ? <span>in cart</span> : <span>add to cart</span>}
                 </button>

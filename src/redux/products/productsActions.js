@@ -1,7 +1,8 @@
 import * as types from './productsTypes'
 
-export const loadProducts = () => ({
-	type: types.LOAD_PRODUCTS
+export const loadProducts = (keyword = null) => ({
+	type: types.LOAD_PRODUCTS,
+	payload: keyword
 })
 
 export const loadProductsSuccess = data => ({
@@ -12,6 +13,11 @@ export const loadProductsSuccess = data => ({
 export const loadProductsFailed = error => ({
 	type: types.LOAD_PRODUCTS_FAILED,
 	payload: error
+})
+
+export const filterProducts = keyword => ({
+	type: types.FILTER_PRODUCTS,
+	payload: keyword
 })
 
 export const addToCart = item => ({

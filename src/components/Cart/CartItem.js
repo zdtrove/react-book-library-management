@@ -14,9 +14,9 @@ function CartItem({ cart, productsActionCreator }) {
                 <span onClick={() => removeItem(id)} className="remove-item">remove</span>
             </div>
             <div>
-                <FaChevronUp className="fa-chevron-up" onClick={() => increaseCart(id)} />
+                <FaChevronUp className="fa-chevron-up" onClick={() => increaseCart(cart)} />
                 <p className="item-amount">{count}</p>
-                <FaChevronDown className="fa-chevron-down" onClick={() => decreaseCart(id)} />
+                <FaChevronDown className="fa-chevron-down" onClick={() => decreaseCart(cart)} />
             </div>
         </div>
     )
