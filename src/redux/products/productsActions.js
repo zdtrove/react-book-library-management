@@ -20,6 +20,26 @@ export const filterProducts = keyword => ({
 	payload: keyword
 })
 
+export const addProduct = product => ({
+	type: types.ADD_PRODUCT,
+	payload: product
+})
+
+export const addProductSuccess = product => ({
+	type: types.ADD_PRODUCT_SUCCESS,
+	payload: product
+})
+
+export const deleteProduct = product => ({
+	type: types.DELETE_PRODUCT,
+	payload: product
+})
+
+export const deleteProductSuccess = product => ({
+	type: types.DELETE_PRODUCT_SUCCESS,
+	payload: product
+})
+
 export const addToCart = item => ({
 	type: types.ADD_TO_CART,
 	payload: item

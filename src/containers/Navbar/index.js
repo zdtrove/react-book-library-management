@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import * as uiActions from '../../redux/ui/uiActions'
+import { showCart } from '../../redux/ui/uiActions'
 import Navbar from '../../components/Navbar'
 
 const mapStateToProps = state => ({
@@ -8,7 +7,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-	uiActionsCreator: bindActionCreators(uiActions, dispatch)
+	showCart: () => dispatch(showCart())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navbar)

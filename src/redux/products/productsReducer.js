@@ -28,7 +28,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
 		case types.LOAD_PRODUCTS_SUCCESS: {
 			return {
 				...state,
-				listProducts: payload,
+				listProducts: payload.reverse(),
 				error: null
 			}
 		}
@@ -37,6 +37,20 @@ const productsReducer = (state = initialState, { type, payload }) => {
 				...state,
 				listProducts: [],
 				error: payload
+			}
+		}
+		case types.ADD_PRODUCT_SUCCESS: {
+			toast.success(msg.MSG_ADD_PRODUCT_SUCCESS(payload.title))
+			return {
+				...state,
+				listProducts: [payload, ...state.listProducts]
+			}
+		}
+		case types.DELETE_PRODUCT_SUCCESS: {
+			toast.success(msg.MSG_DELETE_PRODUCT_SUCCESS(payload.title))
+			return {
+				...state,
+				listProducts: [...state.listProducts].filter(item => item.id !== payload.id)
 			}
 		}
 		case types.ADD_TO_CART: {

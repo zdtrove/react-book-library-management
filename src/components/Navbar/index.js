@@ -2,8 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FaBars, FaCartPlus } from 'react-icons/fa'
 
-const Navbar = ({ listCart, uiActionsCreator }) => {
-	const { showCart } = uiActionsCreator
+const Navbar = ({ listCart, showCart }) => {
 	return <nav className="navbar">
 		<div className="navbar-center">
 			<span className="nav-icon">
@@ -21,11 +20,8 @@ const Navbar = ({ listCart, uiActionsCreator }) => {
 }
 
 Navbar.propTypes = {
-	uiActionsCreator: PropTypes.shape({
-		showCart: PropTypes.func.isRequired
-	}),
+	showCart: PropTypes.func.isRequired,
 	listCart: PropTypes.array.isRequired
 }
-
 
 export default Navbar
