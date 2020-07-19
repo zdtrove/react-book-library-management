@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FaShoppingCart, FaWindowClose } from 'react-icons/fa'
 import ContentModalDelete from '../../components/Modal/ContentModalDelete'
+import ContentModalEdit from '../Modal/ContentModalEdit'
 
 function ProductItem({ 
     product, 
@@ -9,12 +10,25 @@ function ProductItem({
     showModal, 
     hideModal, 
     changeModalContent, 
-    deleteProduct
+    deleteProduct,
+    editProduct,
+    isLoadingButton
 }) {
     const { id, image, inCart, title, price } = product
     const onDeleteProduct = () => {
         showModal()
         changeModalContent(<ContentModalDelete changeModalContent={changeModalContent} deleteProduct={deleteProduct} hideModal={hideModal} product={product} />)
+    }
+
+    const onShowModalEditBook = () => {
+        showModal()
+        changeModalContent(<ContentModalEdit 
+            product={product}
+            editProduct={editProduct}
+            hideModal={hideModal}
+            changeModalContent={changeModalContent}
+            isLoadingButton={isLoadingButton}
+        />)
     }
 
     return (
@@ -28,8 +42,8 @@ function ProductItem({
                 </button>
             </div>
             <h3>{title}</h3>
-            <h4>{price}</h4>
-            <button onClick={() => showModal()} className="button-products edit" type="button">Edit</button>
+            <h4>${price}</h4>
+            <button onClick={() => onShowModalEditBook()} className="button-products edit" type="button">Edit</button>
         </article>
     )
 }
@@ -42,7 +56,9 @@ ProductItem.propTypes = {
     showModal: PropTypes.func.isRequired,
     changeModalContent: PropTypes.func.isRequired,
     hideModal: PropTypes.func.isRequired,
-    deleteProduct: PropTypes.func.isRequired
+    deleteProduct: PropTypes.func.isRequired,
+    editProduct: PropTypes.func.isRequired,
+    isLoadingButton: PropTypes.bool
 }
 
 export default ProductItem

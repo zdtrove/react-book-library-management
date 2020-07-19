@@ -1,32 +1,61 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import * as productsActions from '../../redux/products/productsActions'
 import * as uiActions from '../../redux/ui/uiActions'
 import ProductItem from '../../components/Products/ProductItem'
-import ContentModalAddEdit from '../../components/Modal/ContentModalAddEdit'
+import ContentModalAdd from '../../components/Modal/ContentModalAdd'
+import { bindActionCreators } from 'redux'
+import Pagination from 'rc-pagination';
+import { PER_PAGE } from '../../constants'
+import FilterProducts from '../../components/Products/FilterProducts'
 
 const ProductsContainer = ({
+    uiActionCreators,
+    productsActionCreators,
     listProducts,
     isLoading,
-    isShowModal,
-    loadProducts,
-    addToCart,
-    filterProducts,
-    hideModal,
-    showModal,
-    addProduct,
-    changeModalContent,
-    deleteProduct
+    totalProducts,
+    currentPage
 }) => {
+    const { showModal, hideModal, changeModalContent } = uiActionCreators
+    const { loadProducts, addToCart, deleteProduct, addProduct, editProduct, filterProducts } = productsActionCreators
     useEffect(() => {
         loadProducts()
     }, [loadProducts])
 
     const onShowModalAddBook = () => {
         showModal()
-        changeModalContent(<ContentModalAddEdit changeModalContent={changeModalContent} hideModal={hideModal} addProduct={addProduct} />)
+        changeModalContent(<ContentModalAdd 
+            changeModalContent={changeModalContent} 
+            hideModal={hideModal} 
+            addProduct={addProduct} 
+        />)
     }
+
+    const [price, setPrice] = useState(100)
+    const [searchParam, setSearchParam] = useState({
+        title: null,
+        price: null
+    })
+
+    const onFilterProduct = async e => {
+        const { name, value } = e.target
+        setSearchParam({
+            ...searchParam,
+            [name] : value
+        })
+        if (name === 'price') {
+            setPrice(value)
+        }
+    }
+
+    useEffect(() => {
+        if (searchParam.title !== null || searchParam.price !== null) {
+            console.log(searchParam)
+            filterProducts(searchParam)
+        }
+    }, [filterProducts, searchParam])
 
     const renderProducts = () => {
         let products = null
@@ -40,9 +69,14 @@ const ProductsContainer = ({
                     hideModal={hideModal}
                     changeModalContent={changeModalContent}
                     deleteProduct={deleteProduct}
+                    editProduct={editProduct}
                 />
             })
         return products
+    }
+
+    const onPaginate = page => {
+        loadProducts(searchParam, page)
     }
 
     return (
@@ -50,12 +84,17 @@ const ProductsContainer = ({
             <div className="section-title">
                 <h2>our books</h2>
             </div>
-            <div className="action-bar">
-                <input className="input-text" onChange={e => filterProducts(e.target.value)} type="text" placeholder="Search..." />
-                <button onClick={() => onShowModalAddBook()} className="button-products" type="button">Add book</button>
-            </div>
+            <FilterProducts price={parseInt(price)} onFilterProduct={onFilterProduct} onShowModalAddBook={onShowModalAddBook} />
             <div className="products-center">
                 {isLoading ? <div className="wrap-loader"><span className="loader"></span></div> : renderProducts()}
+            </div>
+            <div className="pagination">
+                {listProducts.length > 0 && <Pagination 
+                    total={totalProducts}
+                    defaultPageSize={PER_PAGE}
+                    onChange={onPaginate}
+                    current={currentPage}
+                />}
             </div>
         </section>
     )
@@ -64,31 +103,32 @@ const ProductsContainer = ({
 ProductsContainer.propTypes = {
     listProducts: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
-    addToCart: PropTypes.func.isRequired,
-    loadProducts: PropTypes.func.isRequired,
-    filterProducts: PropTypes.func.isRequired,
-    isShowModal: PropTypes.bool.isRequired,
-    addProduct: PropTypes.func.isRequired,
-    hideModal: PropTypes.func.isRequired,
-    changeModalContent: PropTypes.func.isRequired,
-    deleteProduct: PropTypes.func.isRequired
+    uiActionCreators: PropTypes.shape({
+        hideModal: PropTypes.func.isRequired,
+        changeModalContent: PropTypes.func.isRequired,
+    }),
+    productsActionCreators: PropTypes.shape({
+        addToCart: PropTypes.func.isRequired,
+        loadProducts: PropTypes.func.isRequired,
+        filterProducts: PropTypes.func.isRequired,
+        addProduct: PropTypes.func.isRequired,
+        deleteProduct: PropTypes.func.isRequired,
+        editProduct: PropTypes.func.isRequired
+    }),
+    totalProducts: PropTypes.number.isRequired,
+    currentPage: PropTypes.number.isRequired
 }
 
 const mapStateToProps = state => ({
     isLoading: state.ui.isLoading,
-    isShowModal: state.ui.isShowModal,
-    listProducts: state.products.listProducts
+    listProducts: state.products.listProducts,
+    totalProducts: state.products.totalProducts,
+    currentPage: state.products.currentPage
 })
 
 const mapDispatchToProps = dispatch => ({
-    loadProducts: () => dispatch(productsActions.loadProducts()),
-    filterProducts: keyword => dispatch(productsActions.filterProducts(keyword)),
-    addProduct: product => dispatch(productsActions.addProduct(product)),
-    addToCart: product => dispatch(productsActions.addToCart(product)),
-    hideModal: () => dispatch(uiActions.hideModal()),
-    showModal: () => dispatch(uiActions.showModal()),
-    changeModalContent: content => dispatch(uiActions.changeModalContent(content)),
-    deleteProduct: product => dispatch(productsActions.deleteProduct(product))
+    uiActionCreators: bindActionCreators(uiActions, dispatch),
+    productsActionCreators: bindActionCreators(productsActions, dispatch)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer)

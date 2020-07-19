@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { FaBars, FaCartPlus } from 'react-icons/fa'
+import { FaHome, FaCartPlus } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 
 const Navbar = ({ listCart, showCart }) => {
 	return <nav className="navbar">
 		<div className="navbar-center">
-			<span className="nav-icon">
-				<FaBars />
-			</span>
+			<Link to="/">
+				<span className="nav-icon"><FaHome /></span>
+			</Link>
 			<p className="logo">Book <span>Store</span></p>
 			<div onClick={showCart} className="cart-btn">
 				<span className="nav-icon">

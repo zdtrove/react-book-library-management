@@ -6,11 +6,12 @@ function ContentModalDelete({ hideModal, deleteProduct, product, changeModalCont
         hideModal()
         changeModalContent()
     }
+
     return (
         <div className="popup-delete">
             <p>Are you sure to delete this book?</p>
             <div className="wrap-button">
-                <button onClick={() => onHideModal()} className="button-products cancel" type="button">cancel</button>
+                <button onClick={onHideModal} className="button-products cancel" type="button">cancel</button>
                 <button onClick={() => deleteProduct(product)} className="button-products" type="button">delete {isLoadingButton && <span className="loader"></span>}</button>
             </div>
         </div>

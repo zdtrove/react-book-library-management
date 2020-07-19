@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-function ModalCommon({ isShowModal, modalContent }) {
+function ModalContainer({ isShowModal, modalContent }) {
     return (
         <div className={isShowModal ? "modal-overlay" : "modal-overlay modal-hide"}>
             {modalContent}
@@ -10,7 +10,7 @@ function ModalCommon({ isShowModal, modalContent }) {
     )
 }
 
-ModalCommon.propTypes = {
+ModalContainer.propTypes = {
     isShowModal: PropTypes.bool,
     modalContent: PropTypes.object
 }
@@ -20,4 +20,4 @@ const mapStateToProps = state => ({
     isShowModal: state.ui.isShowModal
 })
 
-export default connect(mapStateToProps)(ModalCommon)
+export default connect(mapStateToProps)(ModalContainer)

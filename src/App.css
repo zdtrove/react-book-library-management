@@ -20,6 +20,10 @@ body {
     font-family: "Lato", sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: var(---primaryColor);
+}
 /* --------------- Navbar ---------------- */
 
 .navbar {
@@ -35,7 +39,7 @@ body {
 
 .navbar-center {
     width: 100%;
-    max-width: 1300px;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -75,7 +79,7 @@ body {
 
 .hero {
     min-height: calc(100vh - 60px);
-    background: url("./assets/images/hero-bcg.jpeg") center/cover no-repeat;
+    background: url("./assets/images/hero-bcg.jpg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -90,7 +94,7 @@ body {
 
 .banner-title {
     font-size: 3.4rem;
-    text-transform: uppercase;
+    text-transform: capitalize;
     letter-spacing: var(--mainSpacing);
     margin-bottom: 3rem;
 }
@@ -117,7 +121,7 @@ body {
 /* --------------- Products ---------------- */
 
 .products {
-    padding: 4rem 0;
+    padding: 2rem 0;
 }
 
 .product {
@@ -126,6 +130,7 @@ body {
     overflow: hidden;
     padding-bottom: 15px;
     position: relative;
+    max-width: 400px;
 }
 
 .product .close {
@@ -152,7 +157,7 @@ body {
 
 .products-center {
     width: 100%;
-    max-width: 1300px;
+    max-width: 1600px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -222,6 +227,7 @@ body {
     letter-spacing: var(--mainSpacing);
     color: var(--primaryColor);
     text-align: center;
+    margin-bottom: 10px;
 }
 
 /* ---------------End of Products ---------------- */
@@ -384,24 +390,42 @@ body {
 .action-bar {
     padding: 0.5rem 2rem;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 20px;
-    max-width: 1300px;
+    max-width: 1600px;
     margin: 0 auto;
+    margin-bottom: 15px;
+}
+
+.action-bar .filter {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.action-bar .filter .price input {
+    width: 160px;
+    cursor: pointer;
+}
+
+.action-bar .filter .price p {
+    width: 100%;
+    text-align: center;
+    color: var(--primaryColor);
 }
 
 .input-text {
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ddd;
-    min-width: 320px;
+    min-width: 200px;
     outline: none;
     margin-right: 30px;
     color: var(--primaryColor);
 }
 
 .input-text::placeholder {
-    color: var(--primaryColor);
+    color: #bfbfbf;
 }
 
 .button-products {
@@ -415,6 +439,11 @@ body {
     cursor: pointer;
     outline: none;
     text-transform: uppercase;
+    transition: all .6s;
+}
+
+.button-products:hover {
+    color: #fff;
 }
 
 .button-products .loader {
@@ -529,4 +558,50 @@ body {
 
 .popup-delete .wrap-button {
     justify-content: center;
+}
+
+/* Pagination */
+.pagination {
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.rc-pagination li {
+    float: left;
+    list-style: none;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ddd;
+    outline: none;
+    padding: 5px;
+    text-align: center;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.rc-pagination li.rc-pagination-item-active {
+    background: var(--primaryColor);
+    color: #fff;
+}
+
+.rc-pagination .rc-pagination-prev, .rc-pagination .rc-pagination-next {
+    width: 50px;
+}
+
+.rc-pagination-prev:before {
+    content: 'Prev';
+}
+
+.rc-pagination-next:before {
+    content: 'Next';
+}
+
+.rc-pagination-jump-next:before, .rc-pagination-jump-prev:before {
+    content: '...';
+}
+
+.rc-pagination-total-text {
+    min-width: 100px;
 }

@@ -201,14 +201,114 @@
       "inStore": 5
     },
     {
-      "title": "book 01",
-      "price": 5,
+      "title": "book 01 edit",
+      "price": 500,
       "inStore": 5,
       "image": "images/product-1.PNG",
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
       "id": 21
+    },
+    {
+      "title": "book 02",
+      "price": 200,
+      "inStore": 2,
+      "image": "images/product-1.PNG",
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "id": 22
+    },
+    {
+      "title": "Book 03",
+      "price": 300,
+      "inStore": 3,
+      "image": "images/product-1.PNG",
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "id": 23
+    },
+    {
+      "title": "book 4",
+      "price": 400,
+      "inStore": 4,
+      "image": "images/product-1.PNG",
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "id": 24
+    },
+    {
+      "title": "BOOK 5",
+      "price": 500,
+      "inStore": 5,
+      "image": "images/product-1.PNG",
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "id": 25
+    },
+    {
+      "title": "book 6",
+      "price": 600,
+      "inStore": 6,
+      "image": "images/product-1.PNG",
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "id": 26
+    },
+    {
+      "title": "book 7",
+      "price": 700,
+      "inStore": 7,
+      "image": "images/product-1.PNG",
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "id": 27
+    },
+    {
+      "title": "New book edit",
+      "price": 200,
+      "inStore": 5,
+      "image": "images/product-1.PNG",
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "id": 28
+    },
+    {
+      "title": "Book 8",
+      "price": 800,
+      "inStore": 10,
+      "image": "images/product-1.PNG",
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "id": 29
+    },
+    {
+      "title": "learning react master react react hooks",
+      "price": 333,
+      "inStore": 5,
+      "image": "images/product-1.PNG",
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "id": 30
+    },
+    {
+      "title": "New book today",
+      "price": 300,
+      "inStore": 56,
+      "image": "images/product-1.PNG",
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "id": 32
     }
   ]
 }

@@ -6,7 +6,9 @@ const initialState = {
 	listProducts: [],
 	listCart: [],
 	totalPrice: 0,
-	error: null
+	error: null,
+	totalProducts: 0,
+	currentPage: 1
 }
 
 const getTotalPrice = listCart => {
@@ -28,7 +30,9 @@ const productsReducer = (state = initialState, { type, payload }) => {
 		case types.LOAD_PRODUCTS_SUCCESS: {
 			return {
 				...state,
-				listProducts: payload.reverse(),
+				listProducts: payload.data,
+				totalProducts: parseInt(payload.totalProducts),
+				currentPage: parseInt(payload.currentPage),
 				error: null
 			}
 		}
@@ -40,14 +44,27 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			}
 		}
 		case types.ADD_PRODUCT_SUCCESS: {
-			toast.success(msg.MSG_ADD_PRODUCT_SUCCESS(payload.title))
+			toast.success(msg.MSG_ADD_PRODUCT_SUCCESS(payload.title), {
+				position: toast.POSITION.TOP_LEFT
+			})
 			return {
 				...state,
 				listProducts: [payload, ...state.listProducts]
 			}
 		}
+		case types.EDIT_PRODUCT_SUCCESS: {
+			toast.success(msg.MSG_EDIT_PRODUCT_SUCCESS(payload.title), {
+				position: toast.POSITION.TOP_LEFT
+			})
+			return {
+				...state,
+				listProducts: [...state.listProducts].map(item => item.id === payload.id ? payload : item)
+			}
+		}
 		case types.DELETE_PRODUCT_SUCCESS: {
-			toast.success(msg.MSG_DELETE_PRODUCT_SUCCESS(payload.title))
+			toast.success(msg.MSG_DELETE_PRODUCT_SUCCESS(payload.title), {
+				position: toast.POSITION.TOP_LEFT
+			})
 			return {
 				...state,
 				listProducts: [...state.listProducts].filter(item => item.id !== payload.id)
@@ -56,7 +73,9 @@ const productsReducer = (state = initialState, { type, payload }) => {
 		case types.ADD_TO_CART: {
 			const itemAdd = {...payload, inCart: true, count: 1, totalPrice: ((payload.count+1) * payload.price)}
 			const listCart = [...state.listCart, itemAdd]
-			toast.success(msg.MSG_ADD_TO_CART(payload.title))
+			toast.success(msg.MSG_ADD_TO_CART(payload.title), {
+				position: toast.POSITION.TOP_LEFT
+			})
 			return {
 				...state,
 				listCart,
@@ -100,10 +119,12 @@ const productsReducer = (state = initialState, { type, payload }) => {
 		case types.DECREASE_CART: {
 			const { id, count, price } = payload
 			if (count === 1) {
+				const listCart = [...state.listCart].filter(item => item.id !== id)
 				return {
 					...state,
-					listCart: [...state.listCart].filter(item => item.id !== id),
-					listProducts: [...state.listProducts].map(item => item.id === id ? {...item, inCart: false, count: 0, totalPrice: 0} : item)
+					listCart,
+					listProducts: [...state.listProducts].map(item => item.id === id ? {...item, inCart: false, count: 0, totalPrice: 0} : item),
+					totalPrice: getTotalPrice(listCart)
 				}
 			}
 			const listCart = [...state.listCart].map(item => item.id === id ? {...item, count: count-1, totalPrice: (count-1) * price} : item)
