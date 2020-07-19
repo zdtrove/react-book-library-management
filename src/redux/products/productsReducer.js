@@ -16,6 +16,7 @@ const getTotalPrice = listCart => {
 	listCart.forEach(item => {
 		totalPrice += item.totalPrice
 	})
+	
 	return totalPrice
 }
 
@@ -28,11 +29,20 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			}
 		}
 		case types.LOAD_PRODUCTS_SUCCESS: {
+			const productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || {}
+			const arrId = []
+			for (let i = 0; i < productsInCart.length; i++) {
+				arrId.push(productsInCart[i].id)
+			}
+			const listProducts = payload.data.map(item => arrId.includes(item.id) ? {...item, inCart: true} : item)
+			
 			return {
 				...state,
-				listProducts: payload.data,
+				listProducts,
+				listCart: productsInCart.length > 0 ? productsInCart : [],
 				totalProducts: parseInt(payload.totalProducts),
 				currentPage: parseInt(payload.currentPage),
+				totalPrice: productsInCart.length > 0 ? getTotalPrice(productsInCart) : 0,
 				error: null
 			}
 		}
@@ -47,6 +57,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			toast.success(msg.MSG_ADD_PRODUCT_SUCCESS(payload.title), {
 				position: toast.POSITION.TOP_LEFT
 			})
+			
 			return {
 				...state,
 				listProducts: [payload, ...state.listProducts]
@@ -56,6 +67,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			toast.success(msg.MSG_EDIT_PRODUCT_SUCCESS(payload.title), {
 				position: toast.POSITION.TOP_LEFT
 			})
+			
 			return {
 				...state,
 				listProducts: [...state.listProducts].map(item => item.id === payload.id ? payload : item)
@@ -65,6 +77,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			toast.success(msg.MSG_DELETE_PRODUCT_SUCCESS(payload.title), {
 				position: toast.POSITION.TOP_LEFT
 			})
+			
 			return {
 				...state,
 				listProducts: [...state.listProducts].filter(item => item.id !== payload.id)
@@ -76,6 +89,10 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			toast.success(msg.MSG_ADD_TO_CART(payload.title), {
 				position: toast.POSITION.TOP_LEFT
 			})
+			const productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || []
+			productsInCart.push(itemAdd)
+			localStorage.setItem('productsInCart', JSON.stringify(productsInCart))
+			
 			return {
 				...state,
 				listCart,
@@ -85,6 +102,9 @@ const productsReducer = (state = initialState, { type, payload }) => {
 		}
 		case types.REMOVE_ITEM: {
 			const listCart = [...state.listCart].filter(item => item.id !== payload)
+			const productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || {}
+			const newProductsInCart = productsInCart.filter(item => item.id !== payload)
+			localStorage.setItem('productsInCart', JSON.stringify(newProductsInCart))
 
 			return {
 				...state,
@@ -94,6 +114,8 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			}
 		}
 		case types.CLEAR_CART: {
+			localStorage.removeItem('productsInCart')
+			
 			return {
 				...state,
 				listCart: [],
@@ -105,11 +127,16 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			const { id, count, price, inStore } = payload
 			if (count === inStore) {
 				toast.warn(msg.MSG_MAX_PRODUCT_IN_STORE(inStore))
+				
 				return {
 					...state
 				}
 			}
 			const listCart = [...state.listCart].map(item => item.id === id ? {...item, count: count+1, totalPrice: (count+1) * price} : item)
+			const productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || {}
+			const newProductsInCart = productsInCart.map(item => item.id === id ? {...item, count: count+1, totalPrice: (count+1) * price} : item)
+			localStorage.setItem('productsInCart', JSON.stringify(newProductsInCart))
+
 			return {
 				...state,
 				listCart,
@@ -120,6 +147,10 @@ const productsReducer = (state = initialState, { type, payload }) => {
 			const { id, count, price } = payload
 			if (count === 1) {
 				const listCart = [...state.listCart].filter(item => item.id !== id)
+				const productsInCart = JSON.parse(localStorage.getItem('productsInCart')) || {}
+				const newProductsInCart = productsInCart.filter(item => item.id !== id)
+				localStorage.setItem('productsInCart', JSON.stringify(newProductsInCart))
+				
 				return {
 					...state,
 					listCart,
@@ -128,6 +159,7 @@ const productsReducer = (state = initialState, { type, payload }) => {
 				}
 			}
 			const listCart = [...state.listCart].map(item => item.id === id ? {...item, count: count-1, totalPrice: (count-1) * price} : item)
+			
 			return {
 				...state,
 				listCart,

@@ -14,7 +14,6 @@ export const loadProductsApi = async ({ searchParam, currentPage }) => {
 				url += `&price_lte=${price}`
 			}
 		}
-		console.log(url)
 		const response = await axios.get(url)
 		return response
 	} catch (error) {
