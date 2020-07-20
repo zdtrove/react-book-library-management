@@ -9,6 +9,7 @@ import NavbarContainer from './containers/Navbar/'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Products from './pages/Products'
+import Register from './pages/Register'
 import CartContainer from './containers/Cart'
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
 		        	</Route>
 		        	<Route path="/products">
 		        		<Products />
+		        	</Route>
+		        	<Route path="/register">
+		        		<Register />
 		        	</Route>
 		        </Switch>
 		        <CartContainer />

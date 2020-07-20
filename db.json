@@ -4,7 +4,7 @@
       "id": 1,
       "image": "images/product-1.PNG",
       "title": "React Projects 1st Edition",
-      "price": 100,
+      "price": 740,
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
@@ -14,11 +14,11 @@
       "id": 2,
       "image": "images/product-2.PNG",
       "title": "Learning React 1st Edition",
-      "price": 200,
+      "price": 500,
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "inStore": 8
+      "inStore": 5
     },
     {
       "id": 3,
@@ -48,7 +48,7 @@
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "inStore": 16
+      "inStore": 5
     },
     {
       "id": 6,
@@ -64,7 +64,7 @@
       "id": 7,
       "image": "images/product-7.PNG",
       "title": "React Material-UI 1st Edition",
-      "price": 200,
+      "price": 360,
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
@@ -78,7 +78,7 @@
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "inStore": 54
+      "inStore": 5
     },
     {
       "id": 9,
@@ -98,7 +98,7 @@
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "inStore": 17
+      "inStore": 5
     },
     {
       "id": 11,
@@ -114,7 +114,7 @@
       "id": 12,
       "image": "images/product-4.PNG",
       "title": "Full-Stack React 2nd Edition",
-      "price": 200,
+      "price": 400,
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
@@ -131,16 +131,6 @@
       "inStore": 1
     },
     {
-      "id": 14,
-      "image": "images/product-6.PNG",
-      "title": "React Hooks 2nd Edition",
-      "price": 200,
-      "inCart": false,
-      "count": 0,
-      "totalPrice": 0,
-      "inStore": 8
-    },
-    {
       "id": 15,
       "image": "images/product-7.PNG",
       "title": "React Material-UI 2nd Edition",
@@ -148,7 +138,7 @@
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "inStore": 8
+      "inStore": 5
     },
     {
       "id": 16,
@@ -158,7 +148,7 @@
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "inStore": 13
+      "inStore": 5
     },
     {
       "id": 17,
@@ -178,7 +168,7 @@
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "inStore": 76
+      "inStore": 3
     },
     {
       "id": 19,
@@ -188,7 +178,7 @@
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "inStore": 8
+      "inStore": 2
     },
     {
       "id": 20,
@@ -201,114 +191,144 @@
       "inStore": 5
     },
     {
-      "title": "book 01 edit",
-      "price": 500,
-      "inStore": 5,
-      "image": "images/product-1.PNG",
-      "inCart": false,
-      "count": 0,
-      "totalPrice": 0,
-      "id": 21
-    },
-    {
-      "title": "book 02",
-      "price": 200,
-      "inStore": 2,
-      "image": "images/product-1.PNG",
-      "inCart": false,
-      "count": 0,
-      "totalPrice": 0,
-      "id": 22
-    },
-    {
-      "title": "Book 03",
+      "id": 21,
+      "image": "images/product-9.PNG",
+      "title": "React Server-Sice rendering 2nd Edition",
       "price": 300,
-      "inStore": 3,
-      "image": "images/product-1.PNG",
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "id": 23
+      "inStore": 4
     },
     {
-      "title": "book 4",
-      "price": 400,
-      "inStore": 4,
-      "image": "images/product-1.PNG",
+      "id": 22,
+      "image": "images/product-10.PNG",
+      "title": "Mastering React 2nd Edition",
+      "price": 800,
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "id": 24
+      "inStore": 5
     },
     {
-      "title": "BOOK 5",
-      "price": 500,
-      "inStore": 5,
-      "image": "images/product-1.PNG",
+      "id": 23,
+      "image": "images/product-11.PNG",
+      "title": "Pure React 2nd Edition",
+      "price": 200,
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "id": 25
+      "inStore": 2
     },
     {
-      "title": "book 6",
+      "id": 24,
+      "image": "images/product-12.PNG",
+      "title": "Learning React",
+      "price": 680,
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "inStore": 2
+    },
+    {
+      "id": 25,
+      "image": "images/product-13.PNG",
+      "title": "React cookbook",
+      "price": 200,
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "inStore": 8
+    },
+    {
+      "id": 26,
+      "image": "images/product-14.PNG",
+      "title": "React Essentials",
       "price": 600,
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "inStore": 5
+    },
+    {
+      "id": 27,
+      "image": "images/product-15.PNG",
+      "title": "React JS",
+      "price": 550,
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "inStore": 13
+    },
+    {
+      "id": 28,
+      "image": "images/product-16.PNG",
+      "title": "Pro React",
+      "price": 670,
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "inStore": 3
+    },
+    {
+      "id": 29,
+      "image": "images/product-9.PNG",
+      "title": "React with Server-Sice rendering",
+      "price": 600,
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "inStore": 76
+    },
+    {
+      "id": 30,
+      "image": "images/product-10.PNG",
+      "title": "Mastering React",
+      "price": 900,
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "inStore": 3
+    },
+    {
+      "id": 31,
+      "image": "images/product-11.PNG",
+      "title": "Pure React",
+      "price": 800,
+      "inCart": false,
+      "count": 0,
+      "totalPrice": 0,
+      "inStore": 5
+    },
+    {
+      "title": "new book 2",
+      "price": 388,
       "inStore": 6,
       "image": "images/product-1.PNG",
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "id": 26
+      "id": 33
     },
     {
-      "title": "book 7",
-      "price": 700,
-      "inStore": 7,
+      "title": "new book 3",
+      "price": 899,
+      "inStore": 6,
       "image": "images/product-1.PNG",
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "id": 27
+      "id": 34
     },
     {
-      "title": "New book edit",
-      "price": 200,
-      "inStore": 5,
+      "title": "kjlskdfsdf",
+      "price": 343,
+      "inStore": 34,
       "image": "images/product-1.PNG",
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
-      "id": 28
-    },
-    {
-      "title": "Book 8",
-      "price": 800,
-      "inStore": 10,
-      "image": "images/product-1.PNG",
-      "inCart": false,
-      "count": 0,
-      "totalPrice": 0,
-      "id": 29
-    },
-    {
-      "title": "learning react master react react hooks",
-      "price": 333,
-      "inStore": 5,
-      "image": "images/product-1.PNG",
-      "inCart": false,
-      "count": 0,
-      "totalPrice": 0,
-      "id": 30
-    },
-    {
-      "title": "New book today",
-      "price": 300,
-      "inStore": 56,
-      "image": "images/product-1.PNG",
-      "inCart": false,
-      "count": 0,
-      "totalPrice": 0,
-      "id": 32
+      "id": 35
     }
   ]
 }

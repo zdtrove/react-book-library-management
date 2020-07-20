@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux'
 import Pagination from 'rc-pagination';
 import { PER_PAGE } from '../../constants'
 import FilterProducts from '../../components/Products/FilterProducts'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 const ProductsContainer = ({
     uiActionCreators,
@@ -26,10 +27,10 @@ const ProductsContainer = ({
 
     const onShowModalAddBook = () => {
         showModal()
-        changeModalContent(<ContentModalAdd 
-            changeModalContent={changeModalContent} 
-            hideModal={hideModal} 
-            addProduct={addProduct} 
+        changeModalContent(<ContentModalAdd
+            changeModalContent={changeModalContent}
+            hideModal={hideModal}
+            addProduct={addProduct}
         />)
     }
 
@@ -43,7 +44,7 @@ const ProductsContainer = ({
         const { name, value } = e.target
         setSearchParam({
             ...searchParam,
-            [name] : value
+            [name]: value
         })
         if (name === 'price') {
             setPrice(value)
@@ -60,18 +61,21 @@ const ProductsContainer = ({
     const renderProducts = () => {
         let products = null
         products = listProducts.length === 0 ? <div className="no-book">no book matched</div>
-            : listProducts.map(product => {
-                return <ProductItem 
-                    key={product.id} 
-                    product={product} 
-                    addToCart={addToCart} 
-                    showModal={showModal}
-                    hideModal={hideModal}
-                    changeModalContent={changeModalContent}
-                    deleteProduct={deleteProduct}
-                    editProduct={editProduct}
-                />
-            })
+            : <TransitionGroup>
+                {listProducts.map(product => {
+                    return <CSSTransition classNames="item" timeout={600} key={product.id}>
+                        <ProductItem
+                            product={product}
+                            addToCart={addToCart}
+                            showModal={showModal}
+                            hideModal={hideModal}
+                            changeModalContent={changeModalContent}
+                            deleteProduct={deleteProduct}
+                            editProduct={editProduct}
+                        />
+                    </CSSTransition>
+                })}
+            </TransitionGroup>
         return products
     }
 
@@ -89,7 +93,7 @@ const ProductsContainer = ({
                 {isLoading ? <div className="wrap-loader"><span className="loader"></span></div> : renderProducts()}
             </div>
             <div className="pagination">
-                {listProducts.length > 0 && <Pagination 
+                {listProducts.length > 0 && <Pagination
                     total={totalProducts}
                     defaultPageSize={PER_PAGE}
                     onChange={onPaginate}
