@@ -43,7 +43,7 @@ function ProductItem({
             </div>
             <h3>{title}</h3>
             <h4>${price}</h4>
-            <button onClick={() => onShowModalEditBook()} className="button-products edit" type="button">Edit</button>
+            <button onClick={() => onShowModalEditBook()} className="btn edit" type="button">Edit</button>
         </article>
     )
 }

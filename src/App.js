@@ -11,6 +11,7 @@ import Home from './pages/Home'
 import Products from './pages/Products'
 import Register from './pages/Register'
 import CartContainer from './containers/Cart'
+import Login from './pages/Login';
 
 function App() {
 	return (
@@ -26,6 +27,9 @@ function App() {
 		        	</Route>
 		        	<Route path="/register">
 		        		<Register />
+		        	</Route>
+					<Route path="/login">
+		        		<Login />
 		        	</Route>
 		        </Switch>
 		        <CartContainer />

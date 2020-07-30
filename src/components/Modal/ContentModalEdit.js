@@ -33,25 +33,25 @@ const ContentModalEdit = ({ product, editProduct, hideModal, changeModalContent,
 
                 <div className="form-control">
                     <label>Title</label>
-                    <Field className="input-text" name="title" type="text" placeholder="Title" />
+                    <Field className="ipt" name="title" type="text" placeholder="Title" />
                     <ErrorMessage name="title" component={TextError} />
                 </div>
 
                 <div className="form-control">
                     <label>Price</label>
-                    <Field className="input-text" name="price" type="number" placeholder="Price" />
+                    <Field className="ipt" name="price" type="number" placeholder="Price" />
                     <ErrorMessage name="price" component={TextError} />
                 </div>
                 
                 <div className="form-control">
                     <label>Number in store</label>
-                    <Field className="input-text" name="inStore" type="number" placeholder="Number in store" />
+                    <Field className="ipt" name="inStore" type="number" placeholder="Number in store" />
                     <ErrorMessage name="inStore" component={TextError} />
                 </div>
                 
                 <div className="wrap-button">
-                    <button onClick={onHideModal} className="button-products cancel" type="reset">cancel</button>
-                    <button className="button-products add" type="submit">edit {isLoadingButton && <span className="loader"></span>}</button>
+                    <button onClick={onHideModal} className="btn cancel" type="reset">cancel</button>
+                    <button className="btn add" type="submit">edit {isLoadingButton && <span className="loader"></span>}</button>
                 </div>
             </Form>
         </Formik>

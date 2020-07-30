@@ -11,8 +11,8 @@ function ContentModalDelete({ hideModal, deleteProduct, product, changeModalCont
         <div className="popup-delete">
             <p>Are you sure to delete this book?</p>
             <div className="wrap-button">
-                <button onClick={onHideModal} className="button-products cancel" type="button">cancel</button>
-                <button onClick={() => deleteProduct(product)} className="button-products" type="button">delete {isLoadingButton && <span className="loader"></span>}</button>
+                <button onClick={onHideModal} className="btn cancel" type="button">cancel</button>
+                <button onClick={() => deleteProduct(product)} className="btn" type="button">delete {isLoadingButton && <span className="loader"></span>}</button>
             </div>
         </div>
     )

@@ -25,6 +25,67 @@ a {
     color: var(---primaryColor);
 }
 
+/*------------ Common CSS -------------*/
+
+.ipt {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    min-width: 200px;
+    outline: none;
+    margin-right: 30px;
+    color: var(--primaryColor);
+}
+
+.ipt::placeholder {
+    color: #bfbfbf;
+}
+
+.btn {
+    position: relative;
+    padding: 10px 20px;
+    background: burlywood;
+    border: none;
+    border-radius: 4px;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    text-transform: uppercase;
+    transition: all .6s;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+.wrap-tooltip {
+    position: relative;
+}
+
+.wrap-tooltip .tooltip {
+    visibility: hidden;
+    font-size: 14px;
+    position: absolute;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.6);;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    width: 60px;
+    top: 100%;
+    left: 50%;
+    margin-left: -30px;
+    padding: 5px;
+    padding-bottom: 7px;
+}
+
+.wrap-tooltip:hover .tooltip {
+    visibility: visible;
+}
+
+/*------------ End Common CSS -------------*/
+
 /* --------------- Navbar ---------------- */
 
 .navbar {
@@ -60,7 +121,7 @@ a {
 .cart-items {
     position: absolute;
     top: -8px;
-    right: -8px;
+    left: -8px;
     background: var(--primaryColor);
     padding: 0 5px;
     border-radius: 30%;
@@ -73,6 +134,20 @@ a {
 
 .logo span {
     color: var(--primaryColor);
+}
+
+.list-action {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-action span {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.list-action span:last-child {
+    margin: 0;
 }
 
 /* --------------- End of Navbar ---------------- */
@@ -157,7 +232,7 @@ a {
     letter-spacing: var(--mainSpacing);
 }
 
-.products-center > div {
+.products-center .wrap-products {
     width: 100%;
     max-width: 1600px;
     margin: 0 auto;
@@ -360,7 +435,6 @@ a {
     height: 50px;
     align-items: center;
     -webkit-animation: spin 2s linear infinite;
-    /* Safari */
     animation: spin 2s linear infinite;
     display: inline-block;
     transition: all 0.5s;
@@ -374,6 +448,10 @@ a {
         transform: rotate(360deg);
     }
 }
+
+/*------------ End Loader -------------*/
+
+/*------------ React Toastify -------------*/
 
 .Toastify__toast--success {
     background: var(--primaryColor) !important;
@@ -393,7 +471,11 @@ a {
     background-color: chartreuse !important;
 }
 
-.action-bar {
+/*------------ End React Toastify -------------*/
+
+/*------------ Filter Bar -------------*/
+
+.filter-bar {
     padding: 0.5rem 2rem;
     display: flex;
     flex-wrap: wrap;
@@ -404,55 +486,25 @@ a {
     margin-bottom: 15px;
 }
 
-.action-bar .filter {
+.filter-bar .filter {
     display: flex;
     flex-wrap: wrap;
 }
 
-.action-bar .filter .price input {
+.filter-bar .filter .price input {
     width: 160px;
     cursor: pointer;
 }
 
-.action-bar .filter .price p {
+.filter-bar .filter .price p {
     width: 100%;
     text-align: center;
     color: var(--primaryColor);
 }
 
-.input-text {
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    min-width: 200px;
-    outline: none;
-    margin-right: 30px;
-    color: var(--primaryColor);
-}
+/*------------ End Filter Bar -------------*/
 
-.input-text::placeholder {
-    color: #bfbfbf;
-}
-
-.button-products {
-    position: relative;
-    padding: 10px 20px;
-    background: burlywood;
-    border: none;
-    border-radius: 4px;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    outline: none;
-    text-transform: uppercase;
-    transition: all .6s;
-}
-
-.button-products:hover {
-    color: #fff;
-}
-
-.button-products .loader {
+.btn .loader {
     position: absolute;
     width: 32px;
     height: 32px;
@@ -566,7 +618,7 @@ a {
     justify-content: center;
 }
 
-/* Pagination */
+/* --------------- Pagination ---------------- */
 
 .pagination {
     width: 100%;
@@ -618,7 +670,9 @@ a {
     cursor: default !important;
 }
 
-/* React Transition Group */
+/* --------------- End Pagination ---------------- */
+
+/* --------------- React Transition Group ---------------- */
 
 .item-enter {
     opacity: 0;
@@ -638,7 +692,9 @@ a {
     transition: opacity 500ms ease-in;
 }
 
-/* Register */
+/* --------------- End React Transition Group ---------------- */
+
+/* --------------- Register ---------------- */
 .register {
     margin: 0 auto;
     max-width: 500px;
@@ -653,3 +709,5 @@ a {
     text-align: center;
     padding: 20px;
 }
+
+/* --------------- End Register ---------------- */

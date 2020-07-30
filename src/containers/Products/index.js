@@ -61,7 +61,7 @@ const ProductsContainer = ({
     const renderProducts = () => {
         let products = null
         products = listProducts.length === 0 ? <div className="no-book">no book matched</div>
-            : <TransitionGroup>
+            : <TransitionGroup className="wrap-products">
                 {listProducts.map(product => {
                     return <CSSTransition classNames="item" timeout={600} key={product.id}>
                         <ProductItem
