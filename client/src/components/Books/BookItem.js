@@ -1,30 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { FaShoppingCart, FaWindowClose } from 'react-icons/fa'
-import ContentModalDelete from '../../components/Modal/ContentModalDelete'
+import ContentModalDelete from '../Modal/ContentModalDelete'
 import ContentModalEdit from '../Modal/ContentModalEdit'
 
-function ProductItem({ 
-    product, 
+function BookItem({ 
+    book, 
     addToCart, 
     showModal, 
     hideModal, 
     changeModalContent, 
-    deleteProduct,
-    editProduct,
+    deleteBook,
+    editBook,
     isLoadingButton
 }) {
-    const { id, image, inCart, title, price } = product
-    const onDeleteProduct = () => {
+    const { id, image, inCart, title, price } = book
+    const onDeleteBook = () => {
         showModal()
-        changeModalContent(<ContentModalDelete changeModalContent={changeModalContent} deleteProduct={deleteProduct} hideModal={hideModal} product={product} />)
+        changeModalContent(<ContentModalDelete changeModalContent={changeModalContent} deleteBook={deleteBook} hideModal={hideModal} book={book} />)
     }
 
     const onShowModalEditBook = () => {
         showModal()
         changeModalContent(<ContentModalEdit 
-            product={product}
-            editProduct={editProduct}
+            book={book}
+            editBook={editBook}
             hideModal={hideModal}
             changeModalContent={changeModalContent}
             isLoadingButton={isLoadingButton}
@@ -32,11 +32,11 @@ function ProductItem({
     }
 
     return (
-        <article key={id} className="product">
-            <FaWindowClose onClick={() => onDeleteProduct(product)} className="close" />
+        <article key={id} className="book">
+            <FaWindowClose onClick={() => onDeleteBook(book)} className="close" />
             <div className="img-container">
-                <img src={image} alt="product" className="product-img" />
-                <button disabled={inCart && "disabled"} onClick={() => addToCart(product)} className="bag-btn">
+                <img src={image} alt="book" className="book-img" />
+                <button disabled={inCart && "disabled"} onClick={() => addToCart(book)} className="bag-btn">
                     <FaShoppingCart className="fa-shopping-cart" />
                     {inCart ? <span>in cart</span> : <span>add to cart</span>}
                 </button>
@@ -48,17 +48,17 @@ function ProductItem({
     )
 }
 
-ProductItem.propTypes = {
+BookItem.propTypes = {
     addToCart: PropTypes.func.isRequired,
-    product: PropTypes.shape({
+    book: PropTypes.shape({
         inCart: PropTypes.bool.isRequired
     }),
     showModal: PropTypes.func.isRequired,
     changeModalContent: PropTypes.func.isRequired,
     hideModal: PropTypes.func.isRequired,
-    deleteProduct: PropTypes.func.isRequired,
-    editProduct: PropTypes.func.isRequired,
+    deleteBook: PropTypes.func.isRequired,
+    editBook: PropTypes.func.isRequired,
     isLoadingButton: PropTypes.bool
 }
 
-export default ProductItem
+export default BookItem

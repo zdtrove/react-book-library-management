@@ -4,12 +4,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import TextError from '../Errors/TextError'
 
-const ContentModalAdd = ({ addProduct, hideModal, changeModalContent, isLoadingButton }) => {
+const ContentModalAdd = ({ addBook, hideModal, changeModalContent, isLoadingButton }) => {
 	const initialValues = {
 	    title: '',
 	    price: '',
 	    inStore: '',
-	    image: "images/product-1.PNG",
+	    image: "images/book-1.PNG",
 	    inCart: false,
 	    count: 0,
 	    totalPrice: 0
@@ -18,11 +18,11 @@ const ContentModalAdd = ({ addProduct, hideModal, changeModalContent, isLoadingB
 	const validationSchema = Yup.object({
 	    title: Yup.string().required('Title is required').max(60, 'Max length of title is 60 characters').min(4, 'Min length of title is 4 characters'),
 	    price: Yup.number().required('Price is required').max(1000, 'Max price is $1000').min(100, 'Min price is $100'),
-	    inStore: Yup.number().required('Number in store is required').max(1000, 'Max product in store is 1000').min(1, 'Min product in store is 1')
+	    inStore: Yup.number().required('Number in store is required').max(1000, 'Max book in store is 1000').min(1, 'Min book in store is 1')
 	})
 
 	const onSubmit = values => {
-	    addProduct(values)
+	    addBook(values)
 	}
 
     const onHideModal = () => {
@@ -30,7 +30,7 @@ const ContentModalAdd = ({ addProduct, hideModal, changeModalContent, isLoadingB
         changeModalContent()
     }
 
-	return <div className="popup-product">
+	return <div className="popup-book">
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -67,7 +67,7 @@ const ContentModalAdd = ({ addProduct, hideModal, changeModalContent, isLoadingB
 }
 
 ContentModalAdd.propTypes = {
-	addProduct: PropTypes.func.isRequired,
+	addBook: PropTypes.func.isRequired,
 	hideModal: PropTypes.func.isRequired,
     changeModalContent: PropTypes.func.isRequired,
     isLoadingButton: PropTypes.bool

@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as uiActions from '../../redux/ui/uiActions'
-import * as productActions from '../../redux/products/productsActions'
+import * as bookActions from '../../redux/books/booksActions'
 import { FaWindowClose } from 'react-icons/fa'
 import CartItem from '../../components/Cart/CartItem'
 
-const CartContainer = ({ isShowCart, listCart, totalPrice, productsActionCreator, hideCart }) => {
-    const { clearCart } = productsActionCreator
+const CartContainer = ({ isShowCart, listCart, totalPrice, booksActionCreator, hideCart }) => {
+    const { clearCart } = booksActionCreator
     const onClearCart = () => {
         clearCart()
         hideCart()
@@ -23,7 +23,7 @@ const CartContainer = ({ isShowCart, listCart, totalPrice, productsActionCreator
                 <h2>your cart</h2>
                 <div className="cart-content">
                     {listCart && listCart.map((cart, index) => {
-                        return <CartItem key={index} cart={cart} productsActionCreator={productsActionCreator} />
+                        return <CartItem key={index} cart={cart} booksActionCreator={booksActionCreator} />
                     })}
                 </div>
                 <div className="cart-footer">
@@ -50,14 +50,14 @@ CartContainer.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    listCart: state.products.listCart,
-    totalPrice: state.products.totalPrice,
+    listCart: state.books.listCart,
+    totalPrice: state.books.totalPrice,
     isShowCart: state.ui.isShowCart
 })
 
 const mapDispatchToProps = dispatch => ({
     uiActionCreators: bindActionCreators(uiActions, dispatch),
-    productsActionCreator: bindActionCreators(productActions, dispatch),
+    booksActionCreator: bindActionCreators(bookActions, dispatch),
     hideCart: () => dispatch(uiActions.hideCart())
 })
 

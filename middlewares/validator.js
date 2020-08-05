@@ -4,9 +4,9 @@ const User = require('../models/User');
 module.exports = {
 	validateRegister: () => {
 		return [
-			check('password', 'Please provide 6 character long userName').isLength({min: 6}),
-		    check('password', 'Please provide a userName shoter than 32 characters').isLength({max: 32}),
-		    check('userName', 'Please provide a userName').not().isEmpty(),
+			check('username', 'Please provide 6 character long username').isLength({min: 6}),
+		    check('username', 'Please provide a username shoter than 32 characters').isLength({max: 32}),
+		    check('username', 'Please provide a username').not().isEmpty(),
 		    check('email', 'Invalid email address').isEmail(),
 		    check('email', 'Please provide an email').not().isEmpty(),
 		    check('password', 'Please provide 6 character long password').isLength({min: 6}),
@@ -43,6 +43,20 @@ module.exports = {
 					return value;
 				}
 			})
+		];
+	},
+	validateAddBook: () => {
+		return [
+		    check('title', 'Please provide a title').not().isEmpty(),
+		    check('price', 'Please provide a price').not().isEmpty(),
+		    check('inStore', 'Please provide a number book in store').not().isEmpty(),
+		];
+	},
+	validateUpdateBook: () => {
+		return [
+		    check('title', 'Please provide a title').not().isEmpty(),
+		    check('price', 'Please provide a price').not().isEmpty(),
+		    check('inStore', 'Please provide a number book in store').not().isEmpty(),
 		];
 	},
 }

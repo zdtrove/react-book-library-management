@@ -1,10 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import * as authActions from '../redux/auth/authActions'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import TextError from './../components/Errors/TextError'
 import { Link } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
 
-const Login = () => {
+const Login = ({ login, isAuthenticated, history }) => {
+	useEffect(() => {
+		if (isAuthenticated || localStorage.getItem('blmToken')) history.push('/')
+	}, [history, isAuthenticated])
+
 	const initialValues = {
 		email: '',
 		password: ''
@@ -16,7 +24,7 @@ const Login = () => {
 	})
 
 	const onSubmit = data => {
-		console.log(data)
+		login(data)
 	}
 
 	return (
@@ -47,4 +55,18 @@ const Login = () => {
 	)
 }
 
-export default Login
+Login.propTypes = {
+	isAuthenticated: PropTypes.bool.isRequired,
+	login: PropTypes.func.isRequired,
+	history: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.isAuthenticated
+})
+
+const mapDispatchToProps = dispatch => ({
+	login: bindActionCreators(authActions.login, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

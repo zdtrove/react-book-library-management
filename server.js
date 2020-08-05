@@ -20,6 +20,7 @@ mongoose.connect(MONGODB_URL_LOCAL, {
 
 // Routes
 app.use('/api/auth', require('./routes/Users'));
+app.use('/api/books', require('./routes/Books'));
 
 // Run server
 const PORT = process.env.PORT || 5001;

@@ -6,7 +6,7 @@ const Header = () => {
 		<div className="banner">
 			<h1 className="banner-title">welcome to our store</h1>
 			<button className="banner-btn">
-				<Link to="products">shop now</Link>
+				<Link to="books">shop now</Link>
 			</button>
 		</div>
 	</header>

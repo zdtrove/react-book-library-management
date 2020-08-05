@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const UserSchema = new mongoose.Schema({
-    userName: {
+    username: {
         type: String,
         required: true
     },
@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     phone: {
-        type: Number,
+        type: String,
         required: true
     },
     password: {
@@ -20,11 +20,11 @@ const UserSchema = new mongoose.Schema({
     },
     gender: {
         type: Number,
-        required: true
+        default: 0
     },
     location: {
         type: String,
-        required: true
+        default: 'HCM'
     },
     role: {
         type: String,
@@ -39,7 +39,8 @@ const UserSchema = new mongoose.Schema({
         default: false
     },
     ability: {
-        type: [String]
+        type: [String],
+        default: ['doctor', 'nurse', 'developer']
     }
 });
 

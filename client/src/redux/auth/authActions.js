@@ -1,25 +1,25 @@
 import * as types from './authTypes'
 
-export const login = () => ({
-    type: types.LOGIN
+export const login = loginData => ({
+    type: types.LOGIN,
+    payload: loginData
 })
 
-export const loginSuccess = () => ({
-    type: types.LOGIN_SUCCESS
+export const loginSuccess = payload => ({
+    type: types.LOGIN_SUCCESS,
+    payload
 })
 
-export const register = () => ({
-    type: types.REGISTER
+export const register = registerData => ({
+    type: types.REGISTER,
+    payload: registerData
 })
 
-export const registerSuccess = () => ({
-    type: types.REGISTER_SUCCESS
+export const registerSuccess = payload => ({
+    type: types.REGISTER_SUCCESS,
+    payload
 })
 
 export const logout = () => ({
     type: types.LOGOUT
-})
-
-export const logoutSuccess = () => ({
-    type: types.LOGOUT_SUCCESS
 })

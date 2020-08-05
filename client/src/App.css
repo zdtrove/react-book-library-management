@@ -195,13 +195,13 @@ a {
 
 /* --------------- End of Hero ---------------- */
 
-/* --------------- Products ---------------- */
+/* --------------- Books ---------------- */
 
-.products {
+.books {
     padding: 2rem 0;
 }
 
-.product {
+.book {
     border: 1px solid var(--primaryColor);
     border-radius: 4px;
     overflow: hidden;
@@ -210,7 +210,7 @@ a {
     max-width: 400px;
 }
 
-.product .close {
+.book .close {
     float: right;
     margin-top: 5px;
     margin-right: 6px;
@@ -218,7 +218,7 @@ a {
     font-size: 20px;
 }
 
-.product .edit {
+.book .edit {
     position: absolute;
     bottom: 10px;
     right: 13px;
@@ -232,7 +232,7 @@ a {
     letter-spacing: var(--mainSpacing);
 }
 
-.products-center .wrap-products {
+.books-center .wrap-books {
     width: 100%;
     max-width: 1600px;
     margin: 0 auto;
@@ -280,18 +280,18 @@ a {
     transform: translateX(0);
 }
 
-.product-img {
+.book-img {
     display: block;
     width: 100%;
     min-height: 12rem;
     transition: var(--mainTransition);
 }
 
-.img-container:hover .product-img {
+.img-container:hover .book-img {
     opacity: 0.5;
 }
 
-.product h3 {
+.book h3 {
     text-transform: capitalize;
     font-size: 1.1rem;
     margin-top: 1rem;
@@ -299,7 +299,7 @@ a {
     text-align: center;
 }
 
-.product h4 {
+.book h4 {
     margin-top: 0.7rem;
     letter-spacing: var(--mainSpacing);
     color: var(--primaryColor);
@@ -307,7 +307,7 @@ a {
     margin-bottom: 10px;
 }
 
-/* ---------------End of Products ---------------- */
+/* ---------------End of Books ---------------- */
 
 /* --------------- Cart ---------------- */
 
@@ -528,7 +528,7 @@ a {
     visibility: hidden;
 }
 
-.popup-product {
+.popup-book {
     min-width: 320px;
     max-width: 500px;
     padding: 20px;
@@ -538,15 +538,15 @@ a {
     transition: var(--mainTransition);
 }
 
-.hide-modal .popup-product {
+.hide-modal .popup-book {
     transform: translateX(200%);
 }
 
-.modal-overlay .popup-product {
+.modal-overlay .popup-book {
     transform: translateX(0);
 }
 
-.popup-product input {
+.popup-book input {
     width: 100%;
     margin-top: 10px;
 }
@@ -560,7 +560,7 @@ a {
     color: red;
 }
 
-.popup-product h3 {
+.popup-book h3 {
     width: 100%;
     text-align: center;
     margin-bottom: 10px;
@@ -668,6 +668,10 @@ a {
 .rc-pagination-disabled {
     color: #ddd;
     cursor: default !important;
+}
+
+.rc-pagination-options {
+    display: none;
 }
 
 /* --------------- End Pagination ---------------- */

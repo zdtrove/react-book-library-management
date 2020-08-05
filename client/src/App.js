@@ -8,10 +8,11 @@ import ModalContainer from './containers/Modal/'
 import NavbarContainer from './containers/Navbar/'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './pages/Home'
-import Products from './pages/Products'
+import Books from './pages/Books'
 import Register from './pages/Register'
 import CartContainer from './containers/Cart'
 import Login from './pages/Login';
+import PrivateRoute from './routes/PrivateRoute';
 
 function App() {
 	return (
@@ -19,18 +20,10 @@ function App() {
 			<Router>
 				<NavbarContainer />
 				<Switch>
-		        	<Route exact path="/">
-		        		<Home />
-		        	</Route>
-		        	<Route path="/products">
-		        		<Products />
-		        	</Route>
-		        	<Route path="/register">
-		        		<Register />
-		        	</Route>
-					<Route path="/login">
-		        		<Login />
-		        	</Route>
+		        	<PrivateRoute exact path="/" component={Home} />
+		        	<PrivateRoute path="/books" component={Books} />
+		        	<Route path="/register" component={Register} />
+					<Route path="/login" component={Login} />
 		        </Switch>
 		        <CartContainer />
 				<ToastContainer />

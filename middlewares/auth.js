@@ -4,6 +4,7 @@ const {JWT_SECRET} = require('../config');
 
 const auth = (req, res, next) => {
     const token = req.header('Authorization');
+    console.log(token);
     if (!token) {
         return res.status(HttpStatus.UNAUTHORIZED).json({ errors: { msg: 'No token, access denied' }});
     }

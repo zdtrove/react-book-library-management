@@ -4,17 +4,17 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import TextError from '../Errors/TextError'
 
-const ContentModalEdit = ({ product, editProduct, hideModal, changeModalContent, isLoadingButton }) => {
-	const initialValues = product
+const ContentModalEdit = ({ book, editBook, hideModal, changeModalContent, isLoadingButton }) => {
+	const initialValues = book
 
 	const validationSchema = Yup.object({
 	    title: Yup.string().required('Title is required').max(60, 'Max length of title is 60 characters').min(4, 'Min length of title is 4 characters'),
         price: Yup.number().required('Price is required').max(1000, 'Max price is $1000').min(100, 'Min price is $100'),
-        inStore: Yup.number().required('Number in store is required').max(1000, 'Max product in store is 1000').min(1, 'Min product in store is 1')
+        inStore: Yup.number().required('Number in store is required').max(1000, 'Max book in store is 1000').min(1, 'Min book in store is 1')
 	})
 
 	const onSubmit = values => {
-	    editProduct(values)
+	    editBook(values)
 	}
 
     const onHideModal = () => {
@@ -22,7 +22,7 @@ const ContentModalEdit = ({ product, editProduct, hideModal, changeModalContent,
         changeModalContent()
     }
 
-	return <div className="popup-product">
+	return <div className="popup-book">
         <Formik
             initialValues={initialValues}
             validationSchema={validationSchema}
@@ -59,8 +59,8 @@ const ContentModalEdit = ({ product, editProduct, hideModal, changeModalContent,
 }
 
 ContentModalEdit.propTypes = {
-    product: PropTypes.object.isRequired,
-	editProduct: PropTypes.func.isRequired,
+    book: PropTypes.object.isRequired,
+	editBook: PropTypes.func.isRequired,
 	hideModal: PropTypes.func.isRequired,
     changeModalContent: PropTypes.func.isRequired,
     isLoadingButton: PropTypes.bool

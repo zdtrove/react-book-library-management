@@ -68,7 +68,7 @@ module.exports = {
             let data = [];
             for (let i = 1; i < 100; i++) {
                 data.push({
-                    userName: `user${i}`,
+                    username: `user${i}`,
                     email: `user${i}@gmail.com`,
                     phone: '0349998888',
                     role: "user",
@@ -95,8 +95,8 @@ module.exports = {
             return res.status(HttpStatus.BAD_REQUEST).json({ errors: errs });
         }
         try {
-            const { userName, email, phone, gender, location, ability, password } = req.body;
-            const newUser = User({ userName, email, phone, gender, location, ability, password });
+            const { username, email, phone, password } = req.body;
+            const newUser = User({ username, email, phone, password });
             await newUser.save(err => {
                 if (err) return res.status(HttpStatus.BAD_REQUEST).json({ errors: { email: err } });
                 jwt.sign({ sub: newUser.id }, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {

@@ -234,7 +234,7 @@
       "id": 25,
       "image": "images/product-13.PNG",
       "title": "React cookbook",
-      "price": 200,
+      "price": 700,
       "inCart": false,
       "count": 0,
       "totalPrice": 0,
@@ -309,16 +309,6 @@
       "count": 0,
       "totalPrice": 0,
       "id": 33
-    },
-    {
-      "title": "new book 3",
-      "price": 899,
-      "inStore": 6,
-      "image": "images/product-1.PNG",
-      "inCart": false,
-      "count": 0,
-      "totalPrice": 0,
-      "id": 34
     }
   ]
 }

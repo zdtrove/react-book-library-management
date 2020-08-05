@@ -1,26 +1,46 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as authActions from '../redux/auth/authActions'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import TextError from './../components/Errors/TextError'
 import { Link } from 'react-router-dom'
 
-const Register = () => {
+const Register = ({ register, history, isAuthenticated }) => {
+	useEffect(() => {
+		if (isAuthenticated || localStorage.getItem('blmToken')) history.push('/')
+	}, [history, isAuthenticated])
+
 	const initialValues = {
 		username: '',
 		email: '',
+		location: '',
+		phone: '',
 		password: '',
 		passwordConfirm: ''
 	}
 
 	const validationSchema = Yup.object({
-		username: Yup.string().required('Username is required'),
-		email: Yup.string().email('Invalid email address').required('Email is required'),
-		password: Yup.string().required('Password is required'),
-		passwordConfirm: Yup.string().required('Password confirm is required').oneOf([Yup.ref('password'), null], 'Password not matched')
+		username: Yup.string()
+			.required('Username is required')
+			.min(6, 'Please provide 6 character long username')
+			.max(32, 'Please provide a username shoter than 32 characters'),
+		email: Yup.string()
+			.email('Invalid email address')
+			.required('Email is required'),
+		password: Yup.string()
+			.required('Password is required')
+			.min(6, 'Please provide 6 character long password')
+			.max(32, 'Please provide a password shoter than 32 characters'),
+		passwordConfirm: Yup.string()
+			.required('Password confirm is required')
+			.oneOf([Yup.ref('password'), null], 'Passwords confirmation does not match the password')
 	})
 
 	const onSubmit = data => {
-		console.log(data)
+		register(data)
 	}
 
 	return (
@@ -42,6 +62,16 @@ const Register = () => {
 					<ErrorMessage name="email" component={TextError} />
 				</div>
 				<div className="form-control">
+					<label>Phone</label>
+					<Field className="ipt" type="text" name="phone" placeholder="Phone" />
+					<ErrorMessage name="phone" component={TextError} />
+				</div>
+				<div className="form-control">
+					<label>Location</label>
+					<Field className="ipt" type="text" name="location" placeholder="Location" />
+					<ErrorMessage name="location" component={TextError} />
+				</div>
+				<div className="form-control">
 					<label>Password</label>
 					<Field className="ipt" type="password" name="password" placeholder="Password" />
 					<ErrorMessage name="password" component={TextError} />
@@ -60,4 +90,17 @@ const Register = () => {
 	)
 }
 
-export default Register
+Register.propTypes = {
+	register: PropTypes.func.isRequired,
+	history: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+	isAuthenticated: state.auth.isAuthenticated
+})
+
+const mapDispatchToProps = dispatch => ({
+	register: bindActionCreators(authActions.register, dispatch)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

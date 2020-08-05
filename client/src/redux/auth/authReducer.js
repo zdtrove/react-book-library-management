@@ -1,39 +1,30 @@
 import * as types from './authTypes'
 
 const initialState = {
-    isAuthenticated: false
+    isAuthenticated: !!localStorage.getItem('blmToken') || false
 }
 
 const authReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case types.LOGIN: {
-            return {
-                ...state
-            }
-        }
-        case types.LOGIN_SUCCESS: {
-            return {
-                ...state
-            }
-        }
+        case types.LOGIN:
         case types.REGISTER: {
             return {
                 ...state
             }
         }
+        case types.LOGIN_SUCCESS:
         case types.REGISTER_SUCCESS: {
+            localStorage.setItem('blmToken', payload.token)
             return {
-                ...state
+                ...state,
+                isAuthenticated: true
             }
         }
         case types.LOGOUT: {
+            localStorage.removeItem('blmToken')
             return {
-                ...state
-            }
-        }
-        case types.LOGOUT_SUCCESS: {
-            return {
-                ...state
+                ...state,
+                isAuthenticated: false
             }
         }
         default: {

@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa'
 
-function CartItem({ cart, productsActionCreator }) {
+function CartItem({ cart, booksActionCreator }) {
     const { id, image, title, totalPrice, count } = cart
-    const { increaseCart, decreaseCart, removeItem } = productsActionCreator
+    const { increaseCart, decreaseCart, removeItem } = booksActionCreator
     return (
         <div key={id} className="cart-item">
-            <img src={image} alt="product" />
+            <img src={image} alt="book" />
             <div>
                 <h4>{title}</h4>
                 <h5>{totalPrice}</h5>
@@ -24,7 +24,7 @@ function CartItem({ cart, productsActionCreator }) {
 
 CartItem.propTypes = {
     cart: PropTypes.object.isRequired,
-    productsActionCreator: PropTypes.shape({
+    booksActionCreator: PropTypes.shape({
         increaseCart: PropTypes.func.isRequired,
         decreaseCart: PropTypes.func.isRequired,
         removeItem: PropTypes.func.isRequired

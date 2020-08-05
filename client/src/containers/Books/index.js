@@ -1,36 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import * as productsActions from '../../redux/products/productsActions'
+import * as booksActions from '../../redux/books/booksActions'
 import * as uiActions from '../../redux/ui/uiActions'
-import ProductItem from '../../components/Products/ProductItem'
+import BookItem from '../../components/Books/BookItem'
 import ContentModalAdd from '../../components/Modal/ContentModalAdd'
 import { bindActionCreators } from 'redux'
 import Pagination from 'rc-pagination';
 import { PER_PAGE } from '../../constants'
-import FilterProducts from '../../components/Products/FilterProducts'
+import FilterBooks from '../../components/Books/FilterBooks'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
-const ProductsContainer = ({
+const BooksContainer = ({
     uiActionCreators,
-    productsActionCreators,
-    listProducts,
+    booksActionCreators,
+    listBooks,
     isLoading,
-    totalProducts,
+    totalBooks,
     currentPage
 }) => {
     const { showModal, hideModal, changeModalContent } = uiActionCreators
-    const { loadProducts, addToCart, deleteProduct, addProduct, editProduct, filterProducts } = productsActionCreators
+    const { loadBooks, addToCart, deleteBook, addBook, editBook, filterBooks } = booksActionCreators
     useEffect(() => {
-        loadProducts()
-    }, [loadProducts])
+        loadBooks()
+    }, [loadBooks])
 
     const onShowModalAddBook = () => {
         showModal()
         changeModalContent(<ContentModalAdd
             changeModalContent={changeModalContent}
             hideModal={hideModal}
-            addProduct={addProduct}
+            addBook={addBook}
         />)
     }
 
@@ -40,7 +40,7 @@ const ProductsContainer = ({
         price: null
     })
 
-    const onFilterProduct = async e => {
+    const onFilterBook = async e => {
         const { name, value } = e.target
         setSearchParam({
             ...searchParam,
@@ -54,47 +54,46 @@ const ProductsContainer = ({
     useEffect(() => {
         if (searchParam.title !== null || searchParam.price !== null) {
             console.log(searchParam)
-            filterProducts(searchParam)
+            filterBooks(searchParam)
         }
-    }, [filterProducts, searchParam])
+    }, [filterBooks, searchParam])
 
-    const renderProducts = () => {
-        let products = null
-        products = listProducts.length === 0 ? <div className="no-book">no book matched</div>
-            : <TransitionGroup className="wrap-products">
-                {listProducts.map(product => {
-                    return <CSSTransition classNames="item" timeout={600} key={product.id}>
-                        <ProductItem
-                            product={product}
+    const renderBooks = () => {
+        let books = null
+        books = listBooks.length === 0 ? <div className="no-book">no book matched</div>
+            : <TransitionGroup className="wrap-books">
+                {listBooks.map(book => {
+                    return <CSSTransition classNames="item" timeout={600} key={book._id}>
+                        <BookItem
+                            book={book}
                             addToCart={addToCart}
                             showModal={showModal}
                             hideModal={hideModal}
                             changeModalContent={changeModalContent}
-                            deleteProduct={deleteProduct}
-                            editProduct={editProduct}
+                            deleteBook={deleteBook}
+                            editBook={editBook}
                         />
                     </CSSTransition>
                 })}
             </TransitionGroup>
-        return products
+        return books
     }
 
     const onPaginate = page => {
-        loadProducts(searchParam, page)
+        loadBooks(searchParam, page)
     }
-
     return (
-        <section className="products">
+        <section className="books">
             <div className="section-title">
                 <h2>our books</h2>
             </div>
-            <FilterProducts price={parseInt(price)} onFilterProduct={onFilterProduct} onShowModalAddBook={onShowModalAddBook} />
-            <div className="products-center">
-                {isLoading ? <div className="wrap-loader"><span className="loader"></span></div> : renderProducts()}
+            <FilterBooks price={parseInt(price)} onFilterBook={onFilterBook} onShowModalAddBook={onShowModalAddBook} />
+            <div className="books-center">
+                {isLoading ? <div className="wrap-loader"><span className="loader"></span></div> : renderBooks()}
             </div>
             <div className="pagination">
-                {listProducts.length > 0 && <Pagination
-                    total={totalProducts}
+                {listBooks.length > 0 && <Pagination
+                    total={totalBooks}
                     defaultPageSize={PER_PAGE}
                     onChange={onPaginate}
                     current={currentPage}
@@ -104,35 +103,35 @@ const ProductsContainer = ({
     )
 }
 
-ProductsContainer.propTypes = {
-    listProducts: PropTypes.array.isRequired,
+BooksContainer.propTypes = {
+    listBooks: PropTypes.array.isRequired,
     isLoading: PropTypes.bool.isRequired,
     uiActionCreators: PropTypes.shape({
         hideModal: PropTypes.func.isRequired,
         changeModalContent: PropTypes.func.isRequired,
     }),
-    productsActionCreators: PropTypes.shape({
+    booksActionCreators: PropTypes.shape({
         addToCart: PropTypes.func.isRequired,
-        loadProducts: PropTypes.func.isRequired,
-        filterProducts: PropTypes.func.isRequired,
-        addProduct: PropTypes.func.isRequired,
-        deleteProduct: PropTypes.func.isRequired,
-        editProduct: PropTypes.func.isRequired
+        loadBooks: PropTypes.func.isRequired,
+        filterBooks: PropTypes.func.isRequired,
+        addBook: PropTypes.func.isRequired,
+        deleteBook: PropTypes.func.isRequired,
+        editBook: PropTypes.func.isRequired
     }),
-    totalProducts: PropTypes.number.isRequired,
+    totalBooks: PropTypes.number.isRequired,
     currentPage: PropTypes.number.isRequired
 }
 
 const mapStateToProps = state => ({
     isLoading: state.ui.isLoading,
-    listProducts: state.products.listProducts,
-    totalProducts: state.products.totalProducts,
-    currentPage: state.products.currentPage
+    listBooks: state.books.listBooks,
+    totalBooks: state.books.totalBooks,
+    currentPage: state.books.currentPage
 })
 
 const mapDispatchToProps = dispatch => ({
     uiActionCreators: bindActionCreators(uiActions, dispatch),
-    productsActionCreators: bindActionCreators(productsActions, dispatch)
+    booksActionCreators: bindActionCreators(booksActions, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(BooksContainer)
