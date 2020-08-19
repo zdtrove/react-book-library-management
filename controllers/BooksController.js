@@ -44,24 +44,34 @@ module.exports = {
         }
     },
     addBook: async (req, res) => {
-        const result = validationResult(req);
-        if (!result.isEmpty()) {
-            let errs = {};
-            result.errors.forEach(err => {
-                errs[err.param] = err.msg;
-            });
-            return res.status(HttpStatus.BAD_REQUEST).json({ errors: errs });
-        }
-        try {
-            const { title, price, inStore } = req.body;
-            const newBook = Book({ title, price, inStore });
-            await newBook.save(err => {
-                if (err) return res.status(HttpStatus.BAD_REQUEST).json({ errors: { email: err } });
-            });
-            res.json(newBook);
-        } catch (err) {
-            return res.status(HttpStatus.BAD_REQUEST).json({ errors: { msg: err } });
-        }
+        console.log(req.body)
+        console.log(req.files)
+        const image = req.files.image
+        image.mv(`./uploads/${image.name}`, err => {
+            if (err) {
+                console.error(err);
+            } else {
+                console.log('upload success')
+            }
+        })
+        // const result = validationResult(req);
+        // if (!result.isEmpty()) {
+        //     let errs = {};
+        //     result.errors.forEach(err => {
+        //         errs[err.param] = err.msg;
+        //     });
+        //     return res.status(HttpStatus.BAD_REQUEST).json({ errors: errs });
+        // }
+        // try {
+        //     const { title, price, inStore } = req.body;
+        //     const newBook = Book({ title, price, inStore });
+        //     await newBook.save(err => {
+        //         if (err) return res.status(HttpStatus.BAD_REQUEST).json({ errors: { email: err } });
+        //     });
+        //     res.json(newBook);
+        // } catch (err) {
+        //     return res.status(HttpStatus.BAD_REQUEST).json({ errors: { msg: err } });
+        // }
     },
     updateBook: async (req, res) => {
         const result = validationResult(req);

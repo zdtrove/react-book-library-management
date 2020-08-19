@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 :root {
-    --primaryColor: #f09d51;
+    --primaryColor: #8BC34A;
     --mainWhite: #fff;
     --mainBlack: #222;
     --mainGrey: #ececec;
@@ -44,7 +44,7 @@ a {
 .btn {
     position: relative;
     padding: 10px 20px;
-    background: burlywood;
+    background: var(--primaryColor);
     border: none;
     border-radius: 4px;
     color: black;

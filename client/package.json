@@ -9,6 +9,7 @@
     "@welldone-software/why-did-you-render": "^4.2.5",
     "axios": "^0.19.2",
     "formik": "^2.1.5",
+    "jwt-decode": "^2.2.0",
     "rc-pagination": "^2.4.3",
     "rc-select": "^11.0.10",
     "react": "^16.13.1",

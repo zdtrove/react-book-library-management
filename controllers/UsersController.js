@@ -126,7 +126,7 @@ module.exports = {
         if (!isMatch) {
             return res.status(HttpStatus.BAD_REQUEST).json({ errors: { msg: "Invalid Credentials" } });
         }
-        jwt.sign({ sub: user.id }, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+        jwt.sign({ sub: user.id }, JWT_SECRET, { expiresIn: 10 }, (err, token) => {
             if (err) throw err;
             res.json({ token });
         });

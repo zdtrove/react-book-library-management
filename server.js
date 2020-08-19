@@ -2,6 +2,7 @@ if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 }
 const express = require('express');
+const fileUpload = require('express-fileupload');
 const { MONGODB_URL_LOCAL } = require('./config');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
@@ -11,6 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
+app.use(fileUpload());
 
 // Connect MongoDB
 mongoose.connect(MONGODB_URL_LOCAL, {

@@ -47,6 +47,7 @@ const booksReducer = (state = initialState, { type, payload }) => {
 			}
 		}
 		case types.LOAD_BOOKS_FAILED: {
+			console.log(payload)
 			return {
 				...state,
 				listBooks: [],

@@ -13,6 +13,19 @@ import Register from './pages/Register'
 import CartContainer from './containers/Cart'
 import Login from './pages/Login';
 import PrivateRoute from './routes/PrivateRoute';
+import * as authTypes from './redux/auth/authTypes';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode'
+
+const token = localStorage.blmToken
+
+if (token) {
+	if (jwtDecode(token).exp < (Date.now() / 1000)) {
+		store.dispatch({ type: authTypes.TOKEN_EXPIRED });
+	} else {
+		store.dispatch({ type: authTypes.SET_AUTHENTICATED, payload: { token } });
+	}
+} else delete axios.defaults.headers.common['Authorization']
 
 function App() {
 	return (

@@ -9,6 +9,7 @@ function* loadBooksSaga({ payload }) {
 	yield put(showLoading())
 	const resp = yield call(loadBooksApi, payload)
 	const { data, status } = resp
+	console.log(resp);
 	if (status === 200) {
 		yield put(loadBooksSuccess(
 			{
@@ -31,14 +32,14 @@ function* filterBooksSaga({ payload }) {
 function* addBookSaga({ payload }) {
 	yield put(showLoadingButton())
 	const resp = yield call(addBookApi, payload)
-	const { data, status } = resp
-	console.log(resp)
-	if (status === 200) {
-		yield put(addBookSuccess(data))
-		yield put(hideModal())
-		yield put(changeModalContent())
-	}
-	yield put(hideLoadingButton())
+	// const { data, status } = resp
+	// console.log(resp)
+	// if (status === 200) {
+	// 	yield put(addBookSuccess(data))
+	// 	yield put(hideModal())
+	// 	yield put(changeModalContent())
+	// }
+	// yield put(hideLoadingButton())
 }
 
 function* deleteBookSaga({ payload }) {

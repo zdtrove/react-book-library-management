@@ -10,6 +10,11 @@ export const loginSuccess = payload => ({
     payload
 })
 
+export const setAuthenticated = payload => ({
+    type: types.SET_AUTHENTICATED,
+    payload
+})
+
 export const register = registerData => ({
     type: types.REGISTER,
     payload: registerData
@@ -22,4 +27,8 @@ export const registerSuccess = payload => ({
 
 export const logout = () => ({
     type: types.LOGOUT
+})
+
+export const tokenExpired = () => ({
+	type: types.TOKEN_EXPIRED
 })
