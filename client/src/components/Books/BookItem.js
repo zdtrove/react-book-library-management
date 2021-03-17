@@ -30,6 +30,7 @@ function BookItem({
             isLoadingButton={isLoadingButton}
         />)
     }
+    console.log('test');
 
     return (
         <article key={id} className="book">
