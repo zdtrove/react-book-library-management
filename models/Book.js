@@ -28,6 +28,10 @@ const BookSchema = new mongoose.Schema({
     inStore: {
         type: Number,
         default: 5
+    },
+    categories: {
+        type: String,
+        default: 'Category 1'
     }
 })
 

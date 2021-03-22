@@ -1,0 +1,24 @@
+export const GET_BOOKS = 'GET_BOOKS'
+export const GET_BOOKS_SUCCESS = 'GET_BOOKS_SUCCESS'
+export const GET_BOOKS_FAILED = 'GET_BOOKS_FAILED'
+
+export const FILTER_BOOKS = 'FILTER_BOOKS'
+
+export const ADD_BOOK = 'ADD_BOOK'
+export const ADD_BOOK_SUCCESS = 'ADD_BOOK_SUCCESS'
+
+export const EDIT_BOOK = 'EDIT_BOOK'
+export const EDIT_BOOK_SUCCESS = 'EDIT_BOOK_SUCCESS'
+
+export const DELETE_BOOK = 'DELETE_BOOK'
+export const DELETE_BOOK_SUCCESS = 'DELETE_BOOK_SUCCESS'
+
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const REMOVE_ITEM = 'REMOVE_ITEM'
+export const CLEAR_CART = 'CLEAR_CART'
+export const INCREASE_CART = 'INCREASE_CART'
+export const DECREASE_CART = 'DECREASE_CART'
+
+export const LOAD_MORE_BOOK = 'LOAD_MORE_BOOK'
+export const LOAD_MORE_BOOK_SUCCESS = 'LOAD_MORE_BOOK_SUCCESS'
+export const LOAD_MORE_BOOK_FAIL = 'LOAD_MORE_BOOK_FAIL'

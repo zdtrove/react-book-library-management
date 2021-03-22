@@ -13,6 +13,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 app.use(cors());
 app.use(fileUpload());
+app.use("/uploads", express.static(__dirname + '/uploads'));
 
 // Connect MongoDB
 mongoose.connect(MONGODB_URL_LOCAL, {

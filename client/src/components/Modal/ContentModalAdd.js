@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 import TextError from '../Errors/TextError'
-import axios from 'axios'
 
 const ContentModalAdd = ({ addBook, hideModal, changeModalContent, isLoadingButton }) => {
     const initialValues = {
@@ -13,7 +12,8 @@ const ContentModalAdd = ({ addBook, hideModal, changeModalContent, isLoadingButt
         image: "images/book-1.PNG",
         inCart: false,
         count: 0,
-        totalPrice: 0
+        totalPrice: 0,
+        categories: '',
     }
 
     const validationSchema = Yup.object({
@@ -24,22 +24,12 @@ const ContentModalAdd = ({ addBook, hideModal, changeModalContent, isLoadingButt
 
     const onSubmit = async values => {
         let data = new FormData();
-
-        data.append('image', values.image);
-        data.append('title', values.title);
-        data.append('price', values.price);
-        data.append('inStore', values.inStore);
-        // values.image = data;
-        // console.log(values);
-
-        // addBook(values)
-        let url = `http://localhost:5000/api/books/book`
-        return await axios.post(url, data, {
-            headers: { 
-                Authorization: localStorage.getItem('blmToken'),
-                'Content-Type': 'multipath/form-data'
-            }
-        })
+        data.append('image', values.image)
+        data.append('title', values.title)
+        data.append('price', values.price)
+        data.append('inStore', values.inStore)
+        data.append('categories', values.categories)
+        addBook(data)
     }
 
     const onHideModal = () => {
@@ -74,6 +64,17 @@ const ContentModalAdd = ({ addBook, hideModal, changeModalContent, isLoadingButt
                             <label>Number in store</label>
                             <Field className="ipt" name="inStore" type="number" placeholder="Number in store" />
                             <ErrorMessage name="inStore" component={TextError} />
+                        </div>
+
+                        <div className="form-control">
+                            <label>Categories</label><br /><br />
+                            <Field as='select' className="ipt" name="categories">
+                                <option value="">Select</option>
+                                <option value="Category 1">Category 1</option>
+                                <option value="Category 2">Category 2</option>
+                                <option value="Category 3">Category 3</option>
+                            </Field>
+                            <ErrorMessage name="categories" component={TextError} />
                         </div>
 
                         <div className="form-control">

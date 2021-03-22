@@ -715,3 +715,31 @@ a {
 }
 
 /* --------------- End Register ---------------- */
+
+.wrap-load-more {
+    text-align: center;
+}
+.wrap-load-more button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    background: black;
+    cursor: pointer;
+    transition: all .6s;
+    outline: none;
+}
+.wrap-load-more button:hover {
+    background: #fff;
+    color: black;
+    border: 1px solid #ddd;
+}
+.book-categories, .admin-tab {
+    display: flex;
+    justify-content: center;
+}
+.book-categories button, .admin-tab button {
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+}

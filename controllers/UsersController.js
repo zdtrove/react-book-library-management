@@ -101,7 +101,7 @@ module.exports = {
                 if (err) return res.status(HttpStatus.BAD_REQUEST).json({ errors: { email: err } });
                 jwt.sign({ sub: newUser.id }, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
                     if (err) throw err;
-                    res.json({ token });
+                    res.json({ token, user: newUser });
                 });
             });
         } catch (err) {
@@ -126,9 +126,33 @@ module.exports = {
         if (!isMatch) {
             return res.status(HttpStatus.BAD_REQUEST).json({ errors: { msg: "Invalid Credentials" } });
         }
-        jwt.sign({ sub: user.id }, JWT_SECRET, { expiresIn: 10 }, (err, token) => {
+        jwt.sign({ sub: user.id }, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
             if (err) throw err;
-            res.json({ token });
+            res.json({ token, user });
+        });
+    },
+    loginAdmin: async (req, res) => {
+        const result = validationResult(req);
+        if (!result.isEmpty()) {
+            let errs = {};
+            result.errors.forEach(err => {
+                errs[err.param] = err.msg;
+            });
+            return res.status(HttpStatus.BAD_REQUEST).json({ errors: errs });
+        }
+        const { email, password } = req.body;
+        const user = await User.findOne({ email });
+        const { role } = user;
+        if (!user || role !== 'admin') {
+            return res.status(HttpStatus.BAD_REQUEST).json({ errors: { msg: "Invalid Credentials" } });
+        }
+        const isMatch = await user.isValidPassword(password);
+        if (!isMatch) {
+            return res.status(HttpStatus.BAD_REQUEST).json({ errors: { msg: "Invalid Credentials" } });
+        }
+        jwt.sign({ sub: user.id }, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+            if (err) throw err;
+            res.json({ token, user });
         });
     }
 }

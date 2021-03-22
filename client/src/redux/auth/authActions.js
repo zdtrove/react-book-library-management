@@ -10,6 +10,16 @@ export const loginSuccess = payload => ({
     payload
 })
 
+export const loginAdmin = loginData => ({
+    type: types.LOGIN_ADMIN,
+    payload: loginData
+})
+
+export const loginAdminSuccess = payload => ({
+    type: types.LOGIN_ADMIN_SUCCESS,
+    payload
+})
+
 export const setAuthenticated = payload => ({
     type: types.SET_AUTHENTICATED,
     payload
@@ -31,4 +41,22 @@ export const logout = () => ({
 
 export const tokenExpired = () => ({
 	type: types.TOKEN_EXPIRED
+})
+
+export const getUsers = () => ({
+    type: types.GET_USERS
+})
+
+export const getUsersSuccess = users => ({
+    type: types.GET_USERS_SUCCESS,
+    payload: { users }
+})
+
+export const getUser = () => ({
+    type: types.GET_USER
+})
+
+export const getUserSuccess = user => ({
+    type: types.GET_USER_SUCCESS,
+    payload: { user }
 })

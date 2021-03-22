@@ -20,3 +20,33 @@ export const loginApi = async loginData => {
 		return error
 	}
 }
+
+export const loginAdminApi = async loginData => {
+	try {
+		let url = `${API_URL_MONGODB}/api/auth/login-admin`
+		const response = await axios.post(url, loginData)
+		return response
+	} catch (error) {
+		return error
+	}
+}
+
+export const getUsersApi = async () => {
+	try {
+		let url = `${API_URL_MONGODB}/api/auth/users`
+		const response = await axios.get(url)
+		return response
+	} catch (error) {
+		return error
+	}
+}
+
+export const getUserApi = async userId => {
+	try {
+		let url = `${API_URL_MONGODB}/api/auth/user/${userId}`
+		const response = await axios.get(url)
+		return response
+	} catch (error) {
+		return error
+	}
+}

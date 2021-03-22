@@ -1,17 +1,30 @@
-import * as booksTypes from '../books/booksTypes'
-import { loadBooksApi, addBookApi, editBookApi, deleteBookApi } from '../../apis/booksApi'
+import * as bookTypes from '../books/bookTypes'
+import { 
+	getBooksApi, 
+	addBookApi, 
+	editBookApi, 
+	deleteBookApi,
+	loadMoreBookApi,
+} from '../../apis/booksApi'
 import { call, takeEvery, takeLatest, put, delay, all } from 'redux-saga/effects'
-import { loadBooksSuccess, loadBooksFailed, loadBooks, addBookSuccess, deleteBookSuccess, editBookSuccess } from '../books/booksActions'
+import { 
+	getBooksSuccess, 
+	getBooksFailed, 
+	getBooks, 
+	addBookSuccess, 
+	deleteBookSuccess, 
+	editBookSuccess,
+	loadMoreBookSuccess,
+} from '../books/bookActions'
 import { showLoading, hideLoading, showLoadingButton, hideLoadingButton, hideModal, changeModalContent } from '../ui/uiActions'
 
-function* loadBooksSaga({ payload }) {
+function* getBooksSaga({ payload }) {
 	const { currentPage } = payload
 	yield put(showLoading())
-	const resp = yield call(loadBooksApi, payload)
+	const resp = yield call(getBooksApi, payload)
 	const { data, status } = resp
-	console.log(resp);
 	if (status === 200) {
-		yield put(loadBooksSuccess(
+		yield put(getBooksSuccess(
 			{
 				data: data.books, 
 				totalBooks: data.total,
@@ -19,27 +32,36 @@ function* loadBooksSaga({ payload }) {
 			}
 		))
 	} else {
-		yield put(loadBooksFailed(data))
+		yield put(getBooksFailed(data))
 	}
 	yield put(hideLoading())
 }
 
+function* loadMoreBookSaga({ payload }) {
+	const { start } = payload
+	const resp = yield call(loadMoreBookApi, start)
+	const { data, status } = resp
+	console.log(data)
+	if (status === 200) {
+		yield put(loadMoreBookSuccess(data.books))
+	}
+}
+
 function* filterBooksSaga({ payload }) {
 	yield delay(500)
-	yield put(loadBooks(payload))
+	yield put(getBooks(payload))
 }
 
 function* addBookSaga({ payload }) {
 	yield put(showLoadingButton())
 	const resp = yield call(addBookApi, payload)
-	// const { data, status } = resp
-	// console.log(resp)
-	// if (status === 200) {
-	// 	yield put(addBookSuccess(data))
-	// 	yield put(hideModal())
-	// 	yield put(changeModalContent())
-	// }
-	// yield put(hideLoadingButton())
+	const { data, status } = resp
+	if (status === 200) {
+		yield put(addBookSuccess(data))
+		yield put(hideModal())
+		yield put(changeModalContent())
+	}
+	yield put(hideLoadingButton())
 }
 
 function* deleteBookSaga({ payload }) {
@@ -68,11 +90,12 @@ function* editBookSaga({ payload }) {
 
 function* bookSaga() {
 	yield all([
-		takeEvery(booksTypes.LOAD_BOOKS, loadBooksSaga),
-		takeLatest(booksTypes.FILTER_BOOKS, filterBooksSaga),
-		takeEvery(booksTypes.ADD_BOOK, addBookSaga),
-		takeEvery(booksTypes.EDIT_BOOK, editBookSaga),
-		takeEvery(booksTypes.DELETE_BOOK, deleteBookSaga)
+		takeEvery(bookTypes.GET_BOOKS, getBooksSaga),
+		takeLatest(bookTypes.FILTER_BOOKS, filterBooksSaga),
+		takeEvery(bookTypes.ADD_BOOK, addBookSaga),
+		takeEvery(bookTypes.EDIT_BOOK, editBookSaga),
+		takeEvery(bookTypes.DELETE_BOOK, deleteBookSaga),
+		takeEvery(bookTypes.LOAD_MORE_BOOK, loadMoreBookSaga),
 	])
 }
 

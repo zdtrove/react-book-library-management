@@ -13,6 +13,11 @@ module.exports = {
                     $regex: req.query.title
                 }
             }
+            if (req.query.categories) {
+                querySearch.categories = {
+                    $regex: req.query.categories
+                }
+            }
             if (req.query.price) {
                 querySearch.price = {
                     $lte: req.query.price
@@ -44,8 +49,6 @@ module.exports = {
         }
     },
     addBook: async (req, res) => {
-        console.log(req.body)
-        console.log(req.files)
         const image = req.files.image
         image.mv(`./uploads/${image.name}`, err => {
             if (err) {
@@ -54,24 +57,25 @@ module.exports = {
                 console.log('upload success')
             }
         })
-        // const result = validationResult(req);
-        // if (!result.isEmpty()) {
-        //     let errs = {};
-        //     result.errors.forEach(err => {
-        //         errs[err.param] = err.msg;
-        //     });
-        //     return res.status(HttpStatus.BAD_REQUEST).json({ errors: errs });
-        // }
-        // try {
-        //     const { title, price, inStore } = req.body;
-        //     const newBook = Book({ title, price, inStore });
-        //     await newBook.save(err => {
-        //         if (err) return res.status(HttpStatus.BAD_REQUEST).json({ errors: { email: err } });
-        //     });
-        //     res.json(newBook);
-        // } catch (err) {
-        //     return res.status(HttpStatus.BAD_REQUEST).json({ errors: { msg: err } });
-        // }
+        const imageName = image.name;
+        const result = validationResult(req);
+        if (!result.isEmpty()) {
+            let errs = {};
+            result.errors.forEach(err => {
+                errs[err.param] = err.msg;
+            });
+            return res.status(HttpStatus.BAD_REQUEST).json({ errors: errs });
+        }
+        try {
+            const { title, price, inStore, categories } = req.body;
+            const newBook = Book({ title, price, inStore, categories, image: imageName });
+            await newBook.save(err => {
+                if (err) return res.status(HttpStatus.BAD_REQUEST).json({ errors: { email: err } });
+            });
+            res.json(newBook);
+        } catch (err) {
+            return res.status(HttpStatus.BAD_REQUEST).json({ errors: { msg: err } });
+        }
     },
     updateBook: async (req, res) => {
         const result = validationResult(req);
@@ -82,8 +86,8 @@ module.exports = {
             });
             return res.status(HttpStatus.BAD_REQUEST).json({ errors: errs });
         }
-        const { title, price, inStore } = req.body;
-        const bookUpdate = { title, price, inStore };
+        const { title, price, inStore, categories } = req.body;
+        const bookUpdate = { title, price, inStore, categories };
         try {
             let book = await Book.findById(req.params.bookId);
             if (!book) {

@@ -1,5 +1,5 @@
 module.exports = {
     MONGODB_URL_LOCAL: process.env.MONGODB_URL_LOCAL,
     JWT_SECRET: process.env.JWT_SECRET,
-    PER_PAGE: 10
+    PER_PAGE: 3
 }

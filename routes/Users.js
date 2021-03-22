@@ -18,5 +18,6 @@ router.get('/users/insertUsers', auth, UsersController.insertUsers);
 router.post('/register', validateRegister(), UsersController.register);
 
 router.post('/login', validateLogin(), UsersController.login);
+router.post('/login-admin', validateLogin(), UsersController.loginAdmin);
 
 module.exports = router;
